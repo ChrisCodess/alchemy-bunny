@@ -129,6 +129,8 @@ export const startMockBunny = () => {
   /** script id per publish */
   const publishes: number[] = [];
   const requests: MockRequest[] = [];
+  /** Injected failures, consumed in order by the first matching request. */
+  const faults: Array<{ method: string; path: string | RegExp; status: number; body: unknown }> = [];
   const uploads: string[] = [];
   const databases = new Map<string, MockDatabase>();
   let serverUrl = "";
@@ -671,6 +673,15 @@ export const startMockBunny = () => {
     async fetch(request) {
       const url = new URL(request.url);
       requests.push({ method: request.method, path: url.pathname });
+      const fault = faults.find(
+        (candidate) =>
+          candidate.method === request.method &&
+          (typeof candidate.path === "string" ? candidate.path === url.pathname : candidate.path.test(url.pathname)),
+      );
+      if (fault !== undefined) {
+        faults.splice(faults.indexOf(fault), 1);
+        return Response.json(fault.body, { status: fault.status });
+      }
       if (url.pathname.startsWith("/database/")) return handleDatabase(request, url);
       if (url.pathname.startsWith("/sql/")) return handleSql(request, url);
       // Core API routes start with a known resource; everything else is storage.
@@ -693,6 +704,10 @@ export const startMockBunny = () => {
     publishes,
     requests,
     uploads,
+    /** Answer the next request matching `method` and `path` with `status` instead of handling it. */
+    failNext: (method: string, path: string | RegExp, status: number, body: unknown = { error: "Internal error" }) => {
+      faults.push({ method, path, status, body });
+    },
     stop: () => server.stop(true),
   };
 };

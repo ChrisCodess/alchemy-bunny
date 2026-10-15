@@ -1,4 +1,4 @@
-import { Core } from "alchemy-bunny-sdk";
+import { Core, Retry } from "alchemy-bunny-sdk";
 import { isResolved } from "alchemy/Diff";
 import * as Provider from "alchemy/Provider";
 import { Resource } from "alchemy/Resource";
@@ -257,11 +257,14 @@ export const EdgeRuleProvider = () =>
 
           // 2. Ensure / 3. Sync — passing the Guid updates in place; without
           // it the API creates a second rule.
-          const saved = yield* Core.upsertEdgeRule({
+          const upsert = Core.upsertEdgeRule({
             pullZoneId,
             ...desired,
             ...(existing?.Guid ? { Guid: existing.Guid } : {}),
           });
+          // Without a Guid the call creates, and a create re-sent after a
+          // lost response makes a second rule: only throttling is retried.
+          const saved = yield* existing?.Guid ? upsert : upsert.pipe(Retry.throttling);
           let guid = saved.Guid ?? existing?.Guid ?? undefined;
           if (!guid) {
             const reread = yield* Core.getPullZone({ id: pullZoneId });

@@ -1,4 +1,4 @@
-import { Compute, Core } from "alchemy-bunny-sdk";
+import { Compute, Core, Retry } from "alchemy-bunny-sdk";
 import { Unowned } from "alchemy/AdoptPolicy";
 import * as Bundle from "alchemy/Bundle";
 import { isResolved } from "alchemy/Diff";
@@ -431,12 +431,14 @@ export const EdgeScriptProvider = () =>
       // code is never published.
       let publish = false;
       if (script === undefined) {
+        // Only throttling is retried: a create re-sent after a lost
+        // response makes a second script.
         script = yield* Compute.createEdgeScript({
           Name: name,
           ScriptType: SCRIPT_TYPE[type],
           CreateLinkedPullZone: type === "standalone",
           Code: bundle.code,
-        });
+        }).pipe(Retry.throttling);
         publish = true;
         yield* session.note(`Created ${type} edge script ${name}`);
       }

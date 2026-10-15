@@ -586,6 +586,50 @@ test.provider(
 );
 
 test.provider(
+  "database: a failed create or token mint is sent once, not retried",
+  (stack) =>
+    Effect.gen(function* () {
+      const database = Bunny.Database("Db", {});
+      const databasesBefore = mock.databases.size;
+
+      // bunny.net answers client errors on this API with 500; a lost response
+      // looks the same to the client. Neither may re-send the create.
+      mock.failNext("POST", "/database/v2/databases", 500);
+      let since = mock.requests.length;
+      const failure = yield* deployFailure(stack, database);
+      expect(failure).not.toBe("");
+      const creates = mock.requests.slice(since).filter(
+        (request) => request.method === "POST" && request.path === "/database/v2/databases",
+      );
+      expect(creates.length).toBe(1);
+      expect(mock.databases.size).toBe(databasesBefore);
+
+      // The next deploy creates it, once.
+      yield* stack.deploy(database);
+      expect(mock.databases.size).toBe(databasesBefore + 1);
+
+      // A token mint is not re-sent either: a second token would be valid and unheld.
+      mock.failNext("PUT", /\/auth\/generate$/, 500);
+      since = mock.requests.length;
+      const tokenFailure = yield* deployFailure(
+        stack,
+        Effect.gen(function* () {
+          const db = yield* database;
+          yield* Bunny.DatabaseToken("Token", { database: db });
+        }),
+      );
+      expect(tokenFailure).not.toBe("");
+      const mints = mock.requests.slice(since).filter(
+        (request) => request.method === "PUT" && /\/auth\/generate$/.test(request.path),
+      );
+      expect(mints.length).toBe(1);
+
+      yield* stack.destroy();
+    }),
+  { timeout: 60_000 },
+);
+
+test.provider(
   "database: an existing database with an explicit name is not adopted without --adopt",
   (stack) =>
     Effect.gen(function* () {

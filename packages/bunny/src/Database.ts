@@ -1,4 +1,4 @@
-import { Database as DatabaseApi, Sql } from "alchemy-bunny-sdk";
+import { Database as DatabaseApi, Retry, Sql } from "alchemy-bunny-sdk";
 import { Unowned } from "alchemy/AdoptPolicy";
 import { isResolved } from "alchemy/Diff";
 import { createPhysicalName } from "alchemy/PhysicalName";
@@ -220,11 +220,14 @@ export const withDatabaseExecutor = <A, E, R>(
   apply: (executor: SqlExecutor) => Effect.Effect<A, E, R>,
 ) =>
   Effect.gen(function* () {
+    // Only throttling is retried: a token minted twice after a lost
+    // response is a valid token nobody holds, and tokens cannot be revoked
+    // one at a time.
     const { token } = yield* DatabaseApi.generateDatabaseToken({
       db_id: database.databaseId,
       authorization: "full-access",
       expires_at: new Date(Date.now() + MIGRATION_TOKEN_TTL_MS).toISOString(),
-    });
+    }).pipe(Retry.throttling);
     const connection: Sql.DatabaseConnection = { url: database.url, authToken: toRedacted(token) };
     // The executor contract has no requirements: capture the HttpClient here.
     const client = yield* HttpClient.HttpClient;
@@ -302,12 +305,15 @@ export const DatabaseProvider = () =>
       if (db === undefined) {
         const storageRegion =
           news.storageRegion ?? (yield* defaultStorageRegion(desired.primaryRegions));
+        // Only throttling is retried. Names are not unique, so a create
+        // re-sent after a lost response makes a second database, and the
+        // API answers client errors (a bad name, no primary region) with 500.
         const created = yield* DatabaseApi.createDatabase({
           name,
           storage_region: storageRegion,
           primary_regions: desired.primaryRegions,
           replicas_regions: desired.replicaRegions,
-        });
+        }).pipe(Retry.throttling);
         db = yield* getDb(created.db_id);
         if (db === undefined) {
           return yield* Effect.die(new Error(`Bunny Database ${created.db_id} vanished right after creation`));
