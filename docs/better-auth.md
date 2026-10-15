@@ -33,7 +33,7 @@ export default class AuthApi extends Bunny.EdgeScript<AuthApi>()(
   - Better Auth runs on the [`QueryDatabase`](bindings.md#databases) binding's D1-compatible connection, through its D1 dialect. There are no interactive transactions, as with D1.
   - The migration connects through `QueryDatabaseLocal`, with a 15-minute token that is not stored.
   - The runtime token is `<db>QueryDatabaseToken`; see [Token revocation](database.md#token-revocation).
-- **`useSecureCookies: true`.** Without a static https `baseURL`, Better Auth does not know it serves HTTPS and leaves `Secure` off its cookies.
+- `useSecureCookies: true` is needed because, without a static https `baseURL`, Better Auth does not know it serves HTTPS and leaves `Secure` off its cookies.
 
 ## Behind a site on the same origin
 

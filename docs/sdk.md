@@ -4,11 +4,11 @@
 
 | Export | What it covers |
 | --- | --- |
-| `Core` | Core API (`https://api.bunny.net`): storage zones, pull zones, hostnames, edge rules, purge, DNS zones, … — generated |
-| `Compute` | Edge Scripting: scripts, code, releases, variables, secrets — generated |
-| `Database` | Bunny Database management (`/database`, v2): databases, regions, tokens, revoke — generated |
-| `Storage` | Edge Storage file API — hand-written: `getFile`, `getObject`, `putObject`, `deleteObject`, `listDirectory`, `listFiles` |
-| `Sql` | Bunny Database SQL over Hrana (`/v2/pipeline`) — hand-written |
+| `Core` | Core API (`https://api.bunny.net`): storage zones, pull zones, hostnames, edge rules, purge, DNS zones, … (generated) |
+| `Compute` | Edge Scripting: scripts, code, releases, variables, secrets (generated) |
+| `Database` | Bunny Database management (`/database`, v2): databases, regions, tokens, revoke (generated) |
+| `Storage` | Edge Storage file API (hand-written): `getFile`, `getObject`, `putObject`, `deleteObject`, `listDirectory`, `listFiles` |
+| `Sql` | Bunny Database SQL over Hrana (`/v2/pipeline`) (hand-written) |
 | `checksumOf` | uppercase hex SHA-256, the format of the storage `Checksum` header |
 | `Credentials`, `CredentialsFromEnv`, `fromApiKey` | the account key for `Core`, `Compute` and `Database` |
 
@@ -37,10 +37,10 @@ const program = Effect.gen(function* () {
 program.pipe(Effect.provide(Layer.mergeAll(CredentialsFromEnv, FetchHttpClient.layer)), Effect.runPromise);
 ```
 
-- **Typed errors.** Failures are tagged: `NotFound`, `NameTaken`, `NameBeingDeleted`, `Storage*`, `Sql*`, and `UnknownBunnyError` for anything unexpected.
-- **Retries.** Throttling and 5xx responses are retried with backoff; the `Sql` module also retries the database's transient 421.
-- **Secrets.** Sensitive fields (passwords, tokens, keys) are marked in the generated schemas and come back as `Redacted`.
-- **Pagination.** List operations are paginated streams: `Core.listDnsZones.items({})` is a `Stream`.
+- Failures are tagged: `NotFound`, `NameTaken`, `NameBeingDeleted`, `Storage*`, `Sql*`, and `UnknownBunnyError` for anything unexpected.
+- Throttling and 5xx responses are retried with backoff; the `Sql` module also retries the database's transient 421.
+- Sensitive fields (passwords, tokens, keys) are marked in the generated schemas and come back as `Redacted`.
+- List operations are paginated streams: `Core.listDnsZones.items({})` is a `Stream`.
 - `Storage` and `Sql` import no Node builtins, so they bundle into Edge Scripts. `checksumOf` lives in its own module because it needs `node:crypto`.
 
 ## How the generated modules are made

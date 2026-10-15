@@ -1,8 +1,8 @@
 # TanStack Start on bunny.net
 
-- **Site:** TanStack Start with SSR and server functions, running as an Edge Script (`Website.TanStackStart`). Client assets are served from a storage zone.
-- **Guestbook:** stored in a Bunny Database; `migrations/*.sql` are applied on every deploy.
-- **Auth:** stock Better Auth in its own Effect-native Edge Script (`auth/api.ts`, `BunnyDatabase` layer).
+- TanStack Start with SSR and server functions, running as an Edge Script (`Website.TanStackStart`). Client assets are served from a storage zone.
+- A guestbook stored in a Bunny Database; `migrations/*.sql` are applied on every deploy.
+- Stock Better Auth in its own Effect-native Edge Script (`auth/api.ts`, `BunnyDatabase` layer).
   - The site binds it in `env` (`AUTH_API: authApi`) and forwards `/api/auth/*` with `edgeScriptFetcher("AUTH_API")` (`src/auth-proxy.ts`).
   - The browser stays on one origin, and the auth script sees the site's URL.
   - Signing the guestbook requires a session.

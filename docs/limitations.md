@@ -4,9 +4,9 @@ What this release does not do, or has not proven yet. Contributions welcome.
 
 ## Not yet verified
 
-- **`alchemy dev` with bindings.** The dev flow was verified before bindings existed. An `env` binding between a local dev server and a dev-stage Edge Script has not been exercised.
-- **Alchemy profiles.** Credentials have been tested through `BUNNY_API_KEY` only.
-- **Recovering from a token revoke-all.** The documented procedure has not been run end to end ([Token revocation](database.md#token-revocation)).
+- The dev flow was verified before bindings existed. An `env` binding between a local dev server and a dev-stage Edge Script has not been exercised.
+- Credentials have been tested through `BUNNY_API_KEY` only, never through an Alchemy profile.
+- The documented procedure for recovering from a token revoke-all has not been run end to end ([Token revocation](database.md#token-revocation)).
 
 ## Database tokens cannot be revoked individually
 
@@ -19,16 +19,16 @@ Details and the recovery steps are in [Token revocation](database.md#token-revoc
 
 ## Storage
 
-- **No streaming.** `get` buffers the whole file and `put` takes bytes or a string. Large files can exceed an Edge Script's 128 MB memory limit. R2's client streams in both directions; this one does not yet.
-- **No `head`.** bunny.net's Edge Storage API rejects `HEAD`.
-- **No deploy-time client.** There is no `*Local` implementation for Actions (R2 has one), for example to seed a zone at deploy time.
-- **No write-only credential.** bunny.net has none: `WriteStorageZone` carries the full password, and only its client limits it to writes.
+- `get` buffers the whole file and `put` takes bytes or a string. Large files can exceed an Edge Script's 128 MB memory limit. R2's client streams in both directions; this one does not yet.
+- There is no `head`: bunny.net's Edge Storage API rejects `HEAD`.
+- There is no `*Local` implementation for Actions (R2 has one), for example to seed a zone at deploy time.
+- bunny.net has no write-only credential: `WriteStorageZone` carries the full password, and only its client limits it to writes.
 
 ## Edge Script to Edge Script
 
 - The callee must be an **Effect-native** Edge Script: only its runtime re-addresses forwarded requests. A bundled or `fetchHandler` callee sees its own URL.
 - Middleware scripts have no URL and cannot be callees.
-- The fetch key (`<Callee>FetchKey`, an `Alchemy.Random`) never rotates on its own. To rotate it, delete its state record (`bun alchemy state delete <stack>/<stage>/<Callee>FetchKey`) and deploy; the callee and every caller get the new key. ⚠️ Untested.
+- The fetch key (`<Callee>FetchKey`, an `Alchemy.Random`) never rotates on its own. To rotate it, delete its state record (`bun alchemy state delete <stack>/<stage>/<Callee>FetchKey`) and deploy; the callee and every caller get the new key. This procedure is untested.
 
 ## Hosts
 

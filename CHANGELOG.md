@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.1.0 (unreleased)
 
 First release of `alchemy-bunny` and `alchemy-bunny-sdk`, for `alchemy@2.0.0-beta.79` and `effect@4.0.0-rc.117`.
 

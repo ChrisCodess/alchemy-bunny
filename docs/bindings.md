@@ -12,7 +12,7 @@ Bindings give running code typed access to bunny.net resources. They are Alchemy
 
 ## How they work
 
-A capability is called in the host's init — `yield* Bunny.ReadStorageZone(zone)` — and returns a client whose methods run at request time. Provide the implementation layer on the host's effect.
+A capability is called in the host's init, as in `yield* Bunny.ReadStorageZone(zone)`, and returns a client whose methods run at request time. Provide the implementation layer on the host's effect.
 
 bunny.net has no native bindings, so, like Alchemy's Stripe and Prisma capabilities, a capability **yields the resource's Outputs** during init: `RuntimeContext.set` binds them into whichever host runs it (`Redacted` values as secrets) and the client reads them back at runtime. It does not call `host.bind`, which is why the same capability works on every host. Credentials a capability needs are resources named after the *bound resource*, not the host (`<db>QueryDatabaseToken`, `<script>FetchKey`), so every host binding one resource shares one credential.
 
@@ -54,9 +54,9 @@ export default class Files extends Bunny.EdgeScript<Files>()(
 
 Errors are typed `StorageError`s (`StorageUnauthorized`, `StorageNotFound`, `StorageBadRequest`, `StorageThrottled`, …); throttling and 5xx are retried.
 
-- **Access levels.** `ReadStorageZone` binds the zone's read-only password: bunny.net serves GET and listings with it and answers PUT and DELETE with 401. bunny.net has no write-only password, so `WriteStorageZone` binds the full one and its client simply has no reads.
-- **No `head`.** The Edge Storage API rejects `HEAD` (401, even with the full password).
-- **Bodies are buffered.** `get` reads the whole file into memory and `put` takes bytes; there is no streaming yet ([Known limitations](limitations.md)).
+- `ReadStorageZone` binds the zone's read-only password: bunny.net serves GET and listings with it and answers PUT and DELETE with 401. bunny.net has no write-only password, so `WriteStorageZone` binds the full one and its client simply has no reads.
+- There is no `head`: the Edge Storage API rejects `HEAD` (401, even with the full password).
+- Bodies are buffered: `get` reads the whole file into memory and `put` takes bytes; there is no streaming yet ([Known limitations](limitations.md)).
 
 ## Databases
 
@@ -101,7 +101,7 @@ export const Seed = Alchemy.Action(
 
 ## Edge Script to Edge Script
 
-`FetchEdgeScript` is the counterpart of a Cloudflare service binding (`Cloudflare.Workers.Fetch`): the callee handles each request **as the URL the caller addressed** — its origin, path, query and cookies — not as its own `*.bunny.run` URL. A site forwarding `/api/auth/*` to an auth script this way keeps the browser on one origin, and the auth script sees the site's origin.
+`FetchEdgeScript` is the counterpart of a Cloudflare service binding (`Cloudflare.Workers.Fetch`): the callee handles each request as the URL the caller addressed, with its origin, path, query and cookies, not as its own `*.bunny.run` URL. A site forwarding `/api/auth/*` to an auth script this way keeps the browser on one origin, and the auth script sees the site's origin.
 
 ```ts
 export default class Gateway extends Bunny.EdgeScript<Gateway>()(
@@ -126,7 +126,7 @@ export default class Gateway extends Bunny.EdgeScript<Gateway>()(
 // alchemy.run.ts
 const site = yield* Bunny.EdgeScript("Site", { main: "./site.ts", fetchHandler: true, env: { AUTH: auth } });
 
-// site.ts — AUTH becomes AUTH_URL + AUTH_KEY
+// site.ts: AUTH becomes AUTH_URL + AUTH_KEY
 import { edgeScriptFetcher } from "alchemy-bunny/EdgeScriptFetch";
 
 const auth = edgeScriptFetcher("AUTH");
@@ -146,7 +146,7 @@ export default {
 
 ## Non-Effect code
 
-Code that cannot `yield*` a capability — a framework server, a bundled script — gets values through `env`, as with Alchemy's Neon and Prisma resources: pass attribute Outputs (`BUNNY_DATABASE_URL: db.url`, `BUNNY_DATABASE_AUTH_TOKEN: token.token`, `zone.password`, …) and use a client directly: `@bunny.net/database-client` or `alchemy-bunny/DatabaseD1` for the database, and `fetch` for Edge Storage (`PUT https://<host>/<zone>/<path>` with `AccessKey: <password>`). The one addition is an Edge Script in `env`, above.
+Code that cannot `yield*` a capability, such as a framework server or a bundled script, gets values through `env`, as with Alchemy's Neon and Prisma resources: pass attribute Outputs (`BUNNY_DATABASE_URL: db.url`, `BUNNY_DATABASE_AUTH_TOKEN: token.token`, `zone.password`, …) and use a client directly: `@bunny.net/database-client` or `alchemy-bunny/DatabaseD1` for the database, and `fetch` for Edge Storage (`PUT https://<host>/<zone>/<path>` with `AccessKey: <password>`). The one addition is an Edge Script in `env`, above.
 
 ## Verification
 
