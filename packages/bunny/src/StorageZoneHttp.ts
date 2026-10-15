@@ -15,10 +15,10 @@
  * There is no write-only password, so `Write` binds the full one and its
  * client exposes no reads (the role caveat of Alchemy's Prisma buckets).
  */
+import { RedactingFetchHttpClient } from "alchemy-bunny-sdk/http";
 import type * as Storage from "alchemy-bunny-sdk/storage";
 import type { RuntimeContext } from "alchemy/RuntimeContext";
 import * as Effect from "effect/Effect";
-import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import * as HttpClient from "effect/unstable/http/HttpClient";
 import type { StorageZone } from "./StorageZone.ts";
 
@@ -78,4 +78,4 @@ export const makeStorageZoneHttp = <Client>(options: {
     });
   });
 
-export const storageZoneHttpLayer = FetchHttpClient.layer;
+export const storageZoneHttpLayer = RedactingFetchHttpClient;

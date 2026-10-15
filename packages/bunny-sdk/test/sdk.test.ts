@@ -4,9 +4,13 @@ import * as Layer from "effect/Layer";
 import * as Redacted from "effect/Redacted";
 import * as Result from "effect/Result";
 import * as Stream from "effect/Stream";
+import * as Cause from "effect/Cause";
+import * as Exit from "effect/Exit";
 import * as HttpClient from "effect/unstable/http/HttpClient";
-import type * as HttpClientRequest from "effect/unstable/http/HttpClientRequest";
+import * as HttpClientError from "effect/unstable/http/HttpClientError";
+import * as HttpClientRequest from "effect/unstable/http/HttpClientRequest";
 import * as HttpClientResponse from "effect/unstable/http/HttpClientResponse";
+import { inspect } from "node:util";
 import * as Bunny from "../src/index.ts";
 
 interface Seen {
@@ -319,5 +323,60 @@ describe("storage API", () => {
       await failureTag(Bunny.Storage.putObject(access, "a.txt", new Uint8Array([1]), { checksum: "00" }), layer),
     ).toBe("StorageBadRequest");
     expect(seen.length).toBe(1);
+  });
+});
+
+describe("AccessKey redaction", () => {
+  const SECRET = "SECRET-ACCESS-KEY-VALUE";
+  /** A client whose every request fails at the transport level. */
+  const failing = HttpClient.make((request) =>
+    Effect.fail(
+      new HttpClientError.HttpClientError({
+        reason: new HttpClientError.TransportError({ request, description: "connection refused" }),
+      }),
+    ),
+  );
+  const render = (value: unknown) => {
+    let json = "";
+    try {
+      json = JSON.stringify(value) ?? "";
+    } catch {}
+    return `${inspect(value, { depth: 12 })}\n${json}`;
+  };
+
+  test("an error leaving the client carries the placeholder instead of the key", async () => {
+    const client = Bunny.redactAccessKey(failing);
+    const request = HttpClientRequest.get("https://api.test/storagezone").pipe(
+      HttpClientRequest.setHeader(Bunny.ACCESS_KEY_HEADER, SECRET),
+    );
+    const exit = await Effect.runPromiseExit(client.execute(request));
+    expect(Exit.isFailure(exit)).toBe(true);
+    const rendered = render(exit) + (Exit.isFailure(exit) ? Cause.pretty(exit.cause) : "");
+    expect(rendered).not.toContain(SECRET);
+    expect(rendered).toContain("<redacted>");
+    // The error is still the typed one, with its message.
+    const error = Exit.isFailure(exit) ? Cause.squash(exit.cause) : undefined;
+    expect(error).toBeInstanceOf(HttpClientError.HttpClientError);
+    expect((error as HttpClientError.HttpClientError).reason._tag).toBe("TransportError");
+    expect((error as Error).message).toContain("connection refused");
+  });
+
+  test("a Core API failure through the SDK carries no key either", async () => {
+    const layer = Layer.mergeAll(
+      Bunny.fromApiKey({ apiKey: SECRET, apiBaseUrl: "https://api.test" }),
+      Layer.succeed(Bunny.Retry.Retry, { while: () => false }),
+      Layer.succeed(HttpClient.HttpClient, Bunny.redactAccessKey(failing)),
+    );
+    const exit = await Effect.runPromiseExit(Bunny.Core.listStorageZones({}).pipe(Effect.provide(layer)));
+    expect(Exit.isFailure(exit)).toBe(true);
+    expect(render(exit)).not.toContain(SECRET);
+  });
+
+  test("the unwrapped client would have printed it", async () => {
+    const request = HttpClientRequest.get("https://api.test/x").pipe(
+      HttpClientRequest.setHeader(Bunny.ACCESS_KEY_HEADER, SECRET),
+    );
+    const exit = await Effect.runPromiseExit(failing.execute(request));
+    expect(render(exit)).toContain(SECRET);
   });
 });

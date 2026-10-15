@@ -30,4 +30,5 @@ export * as Compute from "./services/compute.ts";
 export * as Database from "./services/database.ts";
 export * as Storage from "./storage.ts";
 export { checksumOf } from "./checksum.ts";
+export { ACCESS_KEY_HEADER, redactAccessKey, redactAccessKeyError, RedactingFetchHttpClient } from "./http.ts";
 export * as Sql from "./sql.ts";

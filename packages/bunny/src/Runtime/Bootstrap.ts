@@ -15,6 +15,7 @@
  * the runtime context's `fetch` (see `EdgeScriptRuntime.ts`).
  */
 import * as BunnySDK from "@bunny.net/edgescript-sdk";
+import { RedactingFetchHttpClient } from "alchemy-bunny-sdk/http";
 import { makeEntrypointLayer, reifyBoundConfigProvider } from "alchemy/Runtime";
 import { Self } from "alchemy/Self";
 import { Stack } from "alchemy/Stack";
@@ -25,7 +26,6 @@ import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Logger from "effect/Logger";
 import * as Scope from "effect/Scope";
-import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import type { WebHandler } from "../EdgeScriptRuntime.ts";
 
 // The pieces of `alchemy/Runtime/Bootstrap/Process` this bootstrap needs
@@ -47,7 +47,7 @@ export const bootstrap = (entrypoint: unknown): void => {
 
   const layer = makeEntrypointLayer(entrypointTag, entrypoint).pipe(
     Layer.provideMerge(stackFromEnv),
-    Layer.provideMerge(Layer.mergeAll(FetchHttpClient.layer, Logger.layer([Logger.consolePretty()]))),
+    Layer.provideMerge(Layer.mergeAll(RedactingFetchHttpClient, Logger.layer([Logger.consolePretty()]))),
     Layer.provideMerge(
       Layer.succeed(
         ConfigProvider.ConfigProvider,
