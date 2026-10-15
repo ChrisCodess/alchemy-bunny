@@ -42,6 +42,7 @@ Details and the recovery steps are in [Token revocation](database.md#token-revoc
 ## Runtime
 
 - `QueryDatabase` does not retry the database's transient 421 ("struggling to contact your database"), which can occur right after creation or a region change. It surfaces as `DatabaseQueryError`.
+- A migration transaction is not re-sent after a lost response or a gateway error, since the server may have committed it. The deploy fails, and the next one retries the migration.
 - Cold starts on Edge Scripting are slow for large bundles: about 3 s for a 2.5 MB framework server.
 
 ## Versions

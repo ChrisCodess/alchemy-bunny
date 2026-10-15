@@ -13,7 +13,10 @@
  *     all-or-nothing: after a failure the ROLLBACK undoes the partial work,
  *     after a commit it fails with "no transaction is active" (ignored)
  *   - 421 "struggling to contact your database" right after creation or a
- *     region change is transient; retried
+ *     region change is transient; retried, as are 429 and 5xx
+ *   - a lost request or response is retried for a single statement, never
+ *     for a transaction: the server may have committed it
+ *   - any other status (a 400, a 404) is a client error and is not retried
  *   - statement errors come back as HTTP 200 with a `{ type: "error" }` result
  */
 import * as Data from "effect/Data";
@@ -52,8 +55,15 @@ export class SqlStatementError extends Data.TaggedError("SqlStatementError")<{
   readonly message: string;
 }> {}
 
-/** Any other HTTP failure, or an unreadable response. */
+/** The request could not be sent or the response could not be read. */
 export class SqlTransportError extends Data.TaggedError("SqlTransportError")<{
+  readonly message: string;
+  readonly cause?: unknown;
+}> {}
+
+/** A status the service is not expected to answer (a 400, a 404, …), or an unreadable body. */
+export class SqlHttpError extends Data.TaggedError("SqlHttpError")<{
+  readonly status: number;
   readonly message: string;
   readonly cause?: unknown;
 }> {}
@@ -62,7 +72,8 @@ export type SqlError =
   | SqlUnauthorized
   | SqlUnavailable
   | SqlStatementError
-  | SqlTransportError;
+  | SqlTransportError
+  | SqlHttpError;
 
 type WireValue =
   | { type: "null" }
@@ -117,13 +128,21 @@ const decodeValue = (value: WireValue): SqlValue => {
   }
 };
 
-const isRetryable = (error: SqlError) =>
-  error._tag === "SqlUnavailable" || error._tag === "SqlTransportError";
+/** The server did not process the request (421, 429, 5xx). */
+const notProcessed = (error: SqlError) => error._tag === "SqlUnavailable";
+
+/** The server did not process it, or the outcome is unknown (lost request or response). */
+const notProcessedOrLost = (error: SqlError) => notProcessed(error) || error._tag === "SqlTransportError";
+
+/** Only 421 and 429: the request was refused before it ran. */
+const refused = (error: SqlError) =>
+  error._tag === "SqlUnavailable" && (error.status === 421 || error.status === 429);
 
 /** Send one pipeline (plus `close`) and return the per-request results. */
 const pipeline = (
   connection: DatabaseConnection,
   requests: ReadonlyArray<unknown>,
+  retryWhile: (error: SqlError) => boolean,
 ): Effect.Effect<WireResult[], SqlError, HttpClient.HttpClient> =>
   Effect.gen(function* () {
     const client = yield* HttpClient.HttpClient;
@@ -145,18 +164,19 @@ const pipeline = (
       return yield* new SqlUnavailable({ status, message: errorText(text, status) });
     }
     if (status < 200 || status >= 300) {
-      return yield* new SqlTransportError({ message: errorText(text, status) });
+      return yield* new SqlHttpError({ status, message: errorText(text, status) });
     }
     const body = yield* Effect.try({
       try: () => JSON.parse(text) as { results?: WireResult[] },
-      catch: (cause) => new SqlTransportError({ message: `unreadable response: ${text.slice(0, 200)}`, cause }),
+      catch: (cause) =>
+        new SqlHttpError({ status, message: `unreadable response: ${text.slice(0, 200)}`, cause }),
     });
     return body.results ?? [];
   }).pipe(
     Effect.retry({
       schedule: Schedule.exponential("500 millis").pipe(Schedule.jittered),
       times: 8,
-      while: isRetryable,
+      while: retryWhile,
     }),
   );
 
@@ -181,9 +201,11 @@ export const query = (
   params: ReadonlyArray<unknown> = [],
 ): Effect.Effect<SqlRow[], SqlError, HttpClient.HttpClient> =>
   Effect.gen(function* () {
-    const [result] = yield* pipeline(connection, [
-      { type: "execute", stmt: { sql, args: params.map(encodeValue), want_rows: true } },
-    ]);
+    const [result] = yield* pipeline(
+      connection,
+      [{ type: "execute", stmt: { sql, args: params.map(encodeValue), want_rows: true } }],
+      notProcessedOrLost,
+    );
     if (result?.type !== "ok" || !result.response?.result) return yield* failed(result);
     const { cols, rows } = result.response.result;
     return rows.map((row) =>
@@ -193,7 +215,10 @@ export const query = (
 
 /**
  * Run SQL scripts (each may hold several statements) in one transaction:
- * all of them apply, or none do.
+ * all of them apply, or none do. Retried only when the server refused the
+ * request (421, 429): after a lost response, or a 5xx from a gateway, the
+ * transaction may have been committed, and sending it again would apply
+ * it twice.
  */
 export const transaction = (
   connection: DatabaseConnection,
@@ -207,10 +232,14 @@ export const transaction = (
       .map((script) => (script.endsWith(";") ? script : `${script}\n;`))
       .join("\n");
     if (body.length === 0) return;
-    const [result] = yield* pipeline(connection, [
-      { type: "sequence", sql: `BEGIN;\n${body}\nCOMMIT;` },
-      // Undoes a failed sequence; after a commit it fails harmlessly.
-      { type: "execute", stmt: { sql: "ROLLBACK" } },
-    ]);
+    const [result] = yield* pipeline(
+      connection,
+      [
+        { type: "sequence", sql: `BEGIN;\n${body}\nCOMMIT;` },
+        // Undoes a failed sequence; after a commit it fails harmlessly.
+        { type: "execute", stmt: { sql: "ROLLBACK" } },
+      ],
+      refused,
+    );
     if (result?.type !== "ok") return yield* failed(result);
   });
