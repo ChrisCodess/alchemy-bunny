@@ -8,6 +8,7 @@ import * as Data from "effect/Data";
 import * as Effect from "effect/Effect";
 import type * as Redacted from "effect/Redacted";
 import {
+  idOf,
   normalizeRegion,
   toRedacted,
   type StorageRegion,
@@ -130,7 +131,7 @@ const tierName = (tier: Core.StorageZoneTier | undefined): StorageZoneTierName =
   tier === 1 ? "edge" : "standard";
 
 const toAttrs = (zone: Core.StorageZoneModel): StorageZoneAttributes => ({
-  storageZoneId: zone.Id ?? 0,
+  storageZoneId: idOf(zone.Id, "storage zone"),
   name: zone.Name ?? "",
   region: normalizeRegion(zone.Region ?? DEFAULT_REGION),
   replicationRegions: [...(zone.ReplicationRegions ?? [])].map(normalizeRegion),
