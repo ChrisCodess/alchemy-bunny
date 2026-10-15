@@ -146,11 +146,11 @@ const nodeBuiltinsPlugin = {
   ) {
     const bare = id.startsWith("node:") ? id.slice("node:".length) : id;
     const root = bare.split("/")[0]!;
-    if (!NODE_BUILTINS.has(root) && !(root in UNAVAILABLE_BUILTINS)) return null;
+    if (!NODE_BUILTINS.has(root) && !(Object.hasOwn(UNAVAILABLE_BUILTINS, root))) return null;
     // Bun's builtin list includes npm names (`ws`, `undici`); a bare
     // specifier that resolves to an installed package is not a builtin.
     if (!id.startsWith("node:") && (await this.resolve(id, importer, { skipSelf: true }))) return null;
-    if (root in UNAVAILABLE_BUILTINS) return { id: `${UNAVAILABLE_PREFIX}${root}` };
+    if (Object.hasOwn(UNAVAILABLE_BUILTINS, root)) return { id: `${UNAVAILABLE_PREFIX}${root}` };
     return { id: `node:${bare}`, external: true };
   },
   load: (id: string) =>
