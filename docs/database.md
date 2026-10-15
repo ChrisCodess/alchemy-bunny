@@ -9,7 +9,7 @@ const db = yield* Bunny.Database("Db", {
 const token = yield* Bunny.DatabaseToken("DbToken", { database: db }); // or authorization: "read-only"
 ```
 
-Bunny Database is SQLite-compatible (libSQL) with primary regions and read replicas. Reach it from:
+Bunny Database is SQLite-compatible (libSQL) with primary regions and read replicas. It is in public preview: bunny.net allows 50 databases per account and 1 GB per database, and says features and APIs may change during the preview. Reach it from:
 
 - **Effect code** in a script: [`QueryDatabase`](bindings.md#databases), which issues and binds its own token.
 - **Other code**: the database `url` and a `DatabaseToken`'s `token`, as `BUNNY_DATABASE_URL` and `BUNNY_DATABASE_AUTH_TOKEN` (the names `@bunny.net/database-client` reads by default), passed through `env`.
