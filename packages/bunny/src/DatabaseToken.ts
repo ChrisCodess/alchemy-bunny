@@ -1,4 +1,4 @@
-import { Database as DatabaseApi } from "alchemy-bunny-sdk";
+import { Database as DatabaseApi, Retry } from "alchemy-bunny-sdk";
 import { isResolved } from "alchemy/Diff";
 import * as Provider from "alchemy/Provider";
 import { Resource } from "alchemy/Resource";
@@ -134,11 +134,13 @@ export const DatabaseTokenProvider = () =>
       if (!(yield* databaseExists(desired.databaseId))) {
         return yield* new DatabaseMissing({ databaseId: desired.databaseId });
       }
+      // Only throttling is retried: a token minted twice after a lost
+      // response is a valid token nobody holds.
       const generated = yield* DatabaseApi.generateDatabaseToken({
         db_id: desired.databaseId,
         authorization: desired.authorization,
         expires_at: desired.expiresAt,
-      });
+      }).pipe(Retry.throttling);
       yield* session.note(`Issued ${desired.authorization} token for ${desired.databaseId}`);
       return {
         databaseId: desired.databaseId,

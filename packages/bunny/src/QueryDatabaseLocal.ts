@@ -1,4 +1,4 @@
-import { Credentials, Database as DatabaseApi } from "alchemy-bunny-sdk";
+import { Credentials, Database as DatabaseApi, Retry } from "alchemy-bunny-sdk";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Redacted from "effect/Redacted";
@@ -54,6 +54,8 @@ export const QueryDatabaseLocal = Layer.effect(
             authorization: "full-access",
             expires_at: new Date(Date.now() + LOCAL_TOKEN_TTL_MS).toISOString(),
           }).pipe(
+            // Only throttling: a token minted twice is a token nobody holds.
+            Retry.throttling,
             Effect.provideService(Credentials, credentials),
             Effect.provideService(HttpClient.HttpClient, httpClient),
             Effect.orDie,
