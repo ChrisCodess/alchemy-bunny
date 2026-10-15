@@ -278,13 +278,14 @@ export const StorageDeploymentProvider = () =>
     }),
     delete: Effect.fn(function* ({ olds, output }) {
       if (!(olds.purge ?? false)) return;
+      // Only the files this deployment uploaded. The zone may hold other
+      // deployments' files, runtime uploads, or files put there by hand.
+      const keys = output.files.map((relative) =>
+        output.prefix ? `${output.prefix}/${relative}` : relative,
+      );
       yield* Effect.gen(function* () {
         const access = yield* resolveStorageAccess(output.storageZoneId);
-        const remote = yield* Storage.listFiles(
-          access,
-          output.prefix ? `${output.prefix}/` : "",
-        );
-        yield* Effect.forEach(remote, (file) => Storage.deleteObject(access, file.key), {
+        yield* Effect.forEach(keys, (key) => Storage.deleteObject(access, key), {
           concurrency: 16,
           discard: true,
         });
