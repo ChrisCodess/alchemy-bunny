@@ -1,0 +1,4452 @@
+{
+  "components": {
+    "schemas": {
+      "ActiveStatsResponse": {
+        "properties": {
+          "active_db": {
+            "description": "Number of DB active",
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "total_db": {
+            "description": "Total number of DB",
+            "format": "int64",
+            "type": "integer"
+          },
+          "total_db_size": {
+            "description": "Total used storage for DBs",
+            "type": "string"
+          }
+        },
+        "required": [
+          "active_db",
+          "total_db",
+          "total_db_size"
+        ],
+        "type": "object"
+      },
+      "AppError": {
+        "description": "A default error response for most API errors.",
+        "properties": {
+          "details": {
+            "description": "Optional Additional error details."
+          },
+          "error": {
+            "description": "An error message.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "Authorization": {
+        "enum": [
+          "full-access",
+          "read-only"
+        ],
+        "type": "string"
+      },
+      "Authorization2": {
+        "enum": [
+          "full-access",
+          "read-only"
+        ],
+        "type": "string"
+      },
+      "Authorization3": {
+        "enum": [
+          "full-access",
+          "read-only"
+        ],
+        "type": "string"
+      },
+      "CDNServerToken": {
+        "pattern": "(.*)-(.*)-(.*)",
+        "type": "string"
+      },
+      "CDNServerToken2": {
+        "pattern": "(.*)-(.*)-(.*)",
+        "type": "string"
+      },
+      "ChartUnit": {
+        "enum": [
+          "NoUnit",
+          "milliseconds",
+          "megabyte"
+        ],
+        "type": "string"
+      },
+      "CountryCode": {
+        "properties": {
+          "alpha2": {
+            "enum": [
+              "AF",
+              "AX",
+              "AL",
+              "DZ",
+              "AS",
+              "AD",
+              "AO",
+              "AI",
+              "AQ",
+              "AG",
+              "AR",
+              "AM",
+              "AW",
+              "AU",
+              "AT",
+              "AZ",
+              "BS",
+              "BH",
+              "BD",
+              "BB",
+              "BY",
+              "BE",
+              "BZ",
+              "BJ",
+              "BM",
+              "BT",
+              "BO",
+              "BQ",
+              "BA",
+              "BW",
+              "BV",
+              "BR",
+              "IO",
+              "BN",
+              "BG",
+              "BF",
+              "BI",
+              "CV",
+              "KH",
+              "CM",
+              "CA",
+              "KY",
+              "CF",
+              "TD",
+              "CL",
+              "CN",
+              "CX",
+              "CC",
+              "CO",
+              "KM",
+              "CG",
+              "CD",
+              "CK",
+              "CR",
+              "CI",
+              "HR",
+              "CU",
+              "CW",
+              "CY",
+              "CZ",
+              "DK",
+              "DJ",
+              "DM",
+              "DO",
+              "EC",
+              "EG",
+              "SV",
+              "GQ",
+              "ER",
+              "EE",
+              "SZ",
+              "ET",
+              "FK",
+              "FO",
+              "FJ",
+              "FI",
+              "FR",
+              "GF",
+              "PF",
+              "TF",
+              "GA",
+              "GM",
+              "GE",
+              "DE",
+              "GH",
+              "GI",
+              "GR",
+              "GL",
+              "GD",
+              "GP",
+              "GU",
+              "GT",
+              "GG",
+              "GN",
+              "GW",
+              "GY",
+              "HT",
+              "HM",
+              "VA",
+              "HN",
+              "HK",
+              "HU",
+              "IS",
+              "IN",
+              "ID",
+              "IR",
+              "IQ",
+              "IE",
+              "IM",
+              "IL",
+              "IT",
+              "JM",
+              "JP",
+              "JE",
+              "JO",
+              "KZ",
+              "KE",
+              "KI",
+              "KP",
+              "KR",
+              "KW",
+              "KG",
+              "LA",
+              "LV",
+              "LB",
+              "LS",
+              "LR",
+              "LY",
+              "LI",
+              "LT",
+              "LU",
+              "MO",
+              "MG",
+              "MW",
+              "MY",
+              "MV",
+              "ML",
+              "MT",
+              "MH",
+              "MQ",
+              "MR",
+              "MU",
+              "YT",
+              "MX",
+              "FM",
+              "MD",
+              "MC",
+              "MN",
+              "ME",
+              "MS",
+              "MA",
+              "MZ",
+              "MM",
+              "NA",
+              "NR",
+              "NP",
+              "NL",
+              "NC",
+              "NZ",
+              "NI",
+              "NE",
+              "NG",
+              "NU",
+              "NF",
+              "MK",
+              "MP",
+              "NO",
+              "OM",
+              "PK",
+              "PW",
+              "PS",
+              "PA",
+              "PG",
+              "PY",
+              "PE",
+              "PH",
+              "PN",
+              "PL",
+              "PT",
+              "PR",
+              "QA",
+              "RE",
+              "RO",
+              "RU",
+              "RW",
+              "BL",
+              "SH",
+              "KN",
+              "LC",
+              "MF",
+              "PM",
+              "VC",
+              "WS",
+              "SM",
+              "ST",
+              "SA",
+              "SN",
+              "RS",
+              "SC",
+              "SL",
+              "SG",
+              "SX",
+              "SK",
+              "SI",
+              "SB",
+              "SO",
+              "ZA",
+              "GS",
+              "SS",
+              "ES",
+              "LK",
+              "SD",
+              "SR",
+              "SJ",
+              "SE",
+              "CH",
+              "SY",
+              "TW",
+              "TJ",
+              "TZ",
+              "TH",
+              "TL",
+              "TG",
+              "TK",
+              "TO",
+              "TT",
+              "TN",
+              "TR",
+              "TM",
+              "TC",
+              "TV",
+              "UG",
+              "UA",
+              "AE",
+              "GB",
+              "US",
+              "UM",
+              "UY",
+              "UZ",
+              "VU",
+              "VE",
+              "VN",
+              "VG",
+              "VI",
+              "WF",
+              "EH",
+              "YE",
+              "ZM",
+              "ZW"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "alpha2"
+        ],
+        "type": "object"
+      },
+      "CreateDatabaseGroupPayload": {
+        "properties": {
+          "display_name": {
+            "description": "A [DatabaseGroup] display name.\n Must be less than 64 Characters.",
+            "type": "string"
+          },
+          "primary_regions": {
+            "description": "The primary regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "replicas_regions": {
+            "description": "The replicas regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "storage_region": {
+            "description": "The Storage Region where the data will be saved at rest.\n You can now about the storage region available by querying GET\n `/v1/config/`.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "display_name",
+          "storage_region",
+          "primary_regions",
+          "replicas_regions"
+        ],
+        "type": "object"
+      },
+      "CreateDatabaseGroupResponse": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/DatabaseGroup",
+            "description": "The created [DatabaseGroup]."
+          }
+        },
+        "required": [
+          "group"
+        ],
+        "type": "object"
+      },
+      "CreateDatabasePayload": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId]"
+          },
+          "slug": {
+            "description": "The database slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "group"
+        ],
+        "type": "object"
+      },
+      "CreateDatabaseResponse": {
+        "properties": {
+          "database": {
+            "$ref": "#/components/schemas/Database"
+          }
+        },
+        "required": [
+          "database"
+        ],
+        "type": "object"
+      },
+      "CreateDatabaseV2Payload": {
+        "properties": {
+          "name": {
+            "description": "A [Database] name.\n Must be less than 64 Characters.",
+            "type": "string"
+          },
+          "primary_regions": {
+            "description": "The primary regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "replicas_regions": {
+            "description": "The replicas regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "storage_region": {
+            "description": "The Storage Region where the data will be saved at rest.\n You can now about the storage region available by querying GET\n `/v1/config/`.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "storage_region",
+          "primary_regions",
+          "replicas_regions"
+        ],
+        "type": "object"
+      },
+      "CreateDatabaseV2Response": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The created database_id"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "DBLiveStatus": {
+        "oneOf": [
+          {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "main": {
+                    "$ref": "#/components/schemas/PossibleRegion"
+                  },
+                  "replicas": {
+                    "items": {
+                      "$ref": "#/components/schemas/PossibleRegion"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "main",
+                  "replicas"
+                ],
+                "type": "object"
+              },
+              "state": {
+                "const": "Live",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state",
+              "metadata"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "state": {
+                "const": "ReplicaOnly",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "state": {
+                "const": "Offline",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "Database": {
+        "description": "[Database] returned by the API",
+        "properties": {
+          "allow_attach": {
+            "description": "If your database is allowed to be attached with other.",
+            "type": "boolean"
+          },
+          "block_reads": {
+            "description": "The status for reads from your database",
+            "type": "boolean"
+          },
+          "block_writes": {
+            "description": "The status for writes from your database",
+            "type": "boolean"
+          },
+          "current_size": {
+            "description": "The current size Database",
+            "type": "string"
+          },
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId] name."
+          },
+          "group_name": {
+            "description": "The [DatabaseGroup] display name.",
+            "type": "string"
+          },
+          "id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The database unique ID."
+          },
+          "is_schema": {
+            "description": "If this database define another database schema.",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Name of the [Database]",
+            "type": "string"
+          },
+          "schema": {
+            "description": "The associated parent database that owns the schema for this database",
+            "nullable": true,
+            "type": "string"
+          },
+          "size_max": {
+            "description": "The current size limit of the Database",
+            "type": "string"
+          },
+          "url": {
+            "description": "Url of the database",
+            "format": "uri",
+            "type": "string"
+          },
+          "version": {
+            "description": "The current version of libSQL for the databases in this\n [DatabaseGroup].",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "id",
+          "url",
+          "block_reads",
+          "block_writes",
+          "allow_attach",
+          "group_id",
+          "group_name",
+          "is_schema",
+          "version",
+          "size_max",
+          "current_size"
+        ],
+        "type": "object"
+      },
+      "Database2": {
+        "description": "A [Database].",
+        "properties": {
+          "block_reads": {
+            "description": "The status for reads from your database",
+            "type": "boolean"
+          },
+          "block_writes": {
+            "description": "The status for writes from your database",
+            "type": "boolean"
+          },
+          "current_size": {
+            "deprecated": true,
+            "description": "The current size Database",
+            "type": "string"
+          },
+          "current_size_bytes": {
+            "description": "The current size Database in bytes",
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The database unique ID."
+          },
+          "name": {
+            "description": "Name of the [Database]",
+            "type": "string"
+          },
+          "primary_regions": {
+            "description": "The Primary Regions available for your Database, when your database\n need to be commissionned, it'll be comissionned in one of those\n regions.",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "replicas_regions": {
+            "description": "The Replica Regions are the regions where your replicas will be able\n to be commissionned.",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "size_max": {
+            "deprecated": true,
+            "description": "The current size limit of the Database",
+            "type": "string"
+          },
+          "size_max_bytes": {
+            "description": "The current size limit of the Database in bytes",
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "storage_region": {
+            "description": "The current Storage Region used to store your databases.",
+            "type": "string"
+          },
+          "url": {
+            "description": "Url of the database",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "id",
+          "url",
+          "block_reads",
+          "block_writes",
+          "size_max",
+          "current_size",
+          "size_max_bytes",
+          "current_size_bytes",
+          "storage_region",
+          "primary_regions",
+          "replicas_regions"
+        ],
+        "type": "object"
+      },
+      "DatabaseGroup": {
+        "description": "[DatabaseGroup] returned by the API",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroup] identifier."
+          },
+          "name": {
+            "description": "The [DatabaseGroup] name, unique across your account.",
+            "type": "string"
+          },
+          "primary_regions": {
+            "description": "The Primary Regions available for your Database, when your database\n need to be commissionned, it'll be comissionned in one of those\n regions.",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "replicas_regions": {
+            "description": "The Secondary Regions are the regions where your replicas will be able\n to be commissionned.",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "type": "array"
+          },
+          "storage_region": {
+            "description": "The current Storage Region used to store your databases.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "storage_region",
+          "primary_regions",
+          "replicas_regions"
+        ],
+        "type": "object"
+      },
+      "DatabaseGroupId": {
+        "description": "[DatabaseGroupId] is a `group_<ulid>`",
+        "type": "string"
+      },
+      "DatabaseId": {
+        "description": "[DatabaseId] is a `db_<ulid>`",
+        "type": "string"
+      },
+      "DatabaseV2PageInfo": {
+        "properties": {
+          "current_page": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "has_more_items": {
+            "type": "boolean"
+          },
+          "total_items": {
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "current_page",
+          "total_items",
+          "has_more_items"
+        ],
+        "type": "object"
+      },
+      "Datapoint": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "format": "double",
+            "type": "number"
+          }
+        ],
+        "type": "array"
+      },
+      "DeleteDatabaseGroupParams": {
+        "properties": {
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId] of the group."
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "type": "object"
+      },
+      "DeleteDatabaseResponse": {
+        "properties": {
+          "database": {
+            "description": "The name of the database that was deleted.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "database"
+        ],
+        "type": "object"
+      },
+      "DeleteDatabaseV2Params": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId] of the database."
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "DeletedDatabaseV2Response": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The deleted [DatabaseId]."
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "DeletedGroupResponse": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/DatabaseGroup",
+            "description": "The deleted [DatabaseGroup]."
+          }
+        },
+        "required": [
+          "group"
+        ],
+        "type": "object"
+      },
+      "ForkDatabaseParams": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "ForkDatabasePayload": {
+        "properties": {
+          "date": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "date"
+        ],
+        "type": "object"
+      },
+      "ForkDatabaseResponse": {
+        "properties": {
+          "database": {
+            "$ref": "#/components/schemas/Database"
+          }
+        },
+        "required": [
+          "database"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseGroupParams": {
+        "properties": {
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId]."
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseGroupPayload": {
+        "properties": {
+          "authorization": {
+            "$ref": "#/components/schemas/Authorization"
+          },
+          "expires_at": {
+            "description": "The expired at date for the token, if not degined the token won't\n expire until you invalidate the JWT Secrets.\n\n Needs to be a date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "authorization"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseGroupResponse": {
+        "properties": {
+          "expires_at": {
+            "description": "The expired at date for the token.\n\n A date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "token": {
+            "description": "The generated JWT for the [DatabaseGroup].",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseParams": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId]"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseParams2": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId] in a form of `db_<id>`"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabasePayload": {
+        "properties": {
+          "authorization": {
+            "$ref": "#/components/schemas/Authorization2"
+          },
+          "expires_at": {
+            "description": "The expired at date for the token, if not degined the token won't\n expire until you invalidate the JWT Secrets.\n\n Needs to be a date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "authorization"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseResponse": {
+        "properties": {
+          "expires_at": {
+            "description": "The expired at date for the token.\n\n A date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "token": {
+            "description": "The generated JWT for the [Database].",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseV2Params": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseGroupId]."
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseV2Payload": {
+        "properties": {
+          "authorization": {
+            "$ref": "#/components/schemas/Authorization3"
+          },
+          "expires_at": {
+            "description": "The expired at date for the token, if not degined the token won't\n expire until you invalidate the JWT Secrets.\n\n Needs to be a date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "authorization"
+        ],
+        "type": "object"
+      },
+      "GenerateTokenDatabaseV2Response": {
+        "properties": {
+          "expires_at": {
+            "description": "The expired at date for the token.\n\n A date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "token": {
+            "description": "The generated JWT for the [Database].",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "type": "object"
+      },
+      "Generation": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "generation": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "created_at",
+          "generation"
+        ],
+        "type": "object"
+      },
+      "GroupLiveStatus": {
+        "oneOf": [
+          {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "main": {
+                    "$ref": "#/components/schemas/PossibleRegion"
+                  },
+                  "replicas": {
+                    "items": {
+                      "$ref": "#/components/schemas/PossibleRegion"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "main",
+                  "replicas"
+                ],
+                "type": "object"
+              },
+              "state": {
+                "const": "Live",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state",
+              "metadata"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "state": {
+                "const": "ReplicaOnly",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "state": {
+                "const": "Offline",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "InvalidateTokenDatabaseGroupParams": {
+        "properties": {
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId] of the group."
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "type": "object"
+      },
+      "InvalidateTokenDatabaseParams": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId] in a form of `db_<id>`"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "InvalidateTokenDatabaseV2Params": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId] of the group."
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "LatencyChartData": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Datapoint"
+            },
+            "type": "array"
+          },
+          "diff": {
+            "deprecated": true,
+            "description": "The difference between the result from the time window",
+            "format": "double",
+            "maximum": 1,
+            "minimum": -1,
+            "nullable": true,
+            "type": "number"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "type": "object"
+      },
+      "LatencySingleRegionChart": {
+        "properties": {
+          "data": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/LatencyChartData"
+            },
+            "type": "object"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/ChartUnit"
+          }
+        },
+        "required": [
+          "unit",
+          "data"
+        ],
+        "type": "object"
+      },
+      "LimitsResponse": {
+        "properties": {
+          "current_databases": {
+            "description": "Current number of databases",
+            "format": "uint32",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "max_databases": {
+            "description": "Maximum number of databases",
+            "format": "uint32",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "current_databases",
+          "max_databases"
+        ],
+        "type": "object"
+      },
+      "ListConfigAPIResponse": {
+        "properties": {
+          "primary_regions": {
+            "items": {
+              "$ref": "#/components/schemas/Region"
+            },
+            "type": "array"
+          },
+          "replica_regions": {
+            "items": {
+              "$ref": "#/components/schemas/Region"
+            },
+            "type": "array"
+          },
+          "storage_region_available": {
+            "description": "The Storage Regions available",
+            "items": {
+              "$ref": "#/components/schemas/StorageRegion"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "storage_region_available",
+          "primary_regions",
+          "replica_regions"
+        ],
+        "type": "object"
+      },
+      "ListDatabaseGroupParams": {
+        "properties": {
+          "search": {
+            "description": "Search over the group name",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ListDatabaseGroupResponse": {
+        "properties": {
+          "groups": {
+            "description": "Array of [DatabaseGroup]",
+            "items": {
+              "$ref": "#/components/schemas/DatabaseGroup"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "groups"
+        ],
+        "type": "object"
+      },
+      "ListDatabaseParams": {
+        "properties": {
+          "group_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DatabaseGroupId"
+              },
+              {
+                "nullable": true,
+                "type": []
+              }
+            ],
+            "description": "Filter by [DatabaseGroupId]"
+          }
+        },
+        "type": "object"
+      },
+      "ListDatabaseResponse": {
+        "properties": {
+          "databases": {
+            "items": {
+              "$ref": "#/components/schemas/Database"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "databases"
+        ],
+        "type": "object"
+      },
+      "ListDatabaseV2Params": {
+        "properties": {
+          "page": {
+            "format": "uint32",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "per_page": {
+            "default": 50,
+            "description": "Items per page. Defaults to 50; `0` is rejected.",
+            "format": "uint32",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "search": {
+            "description": "Search over the group name",
+            "nullable": true,
+            "pattern": "^[a-zA-Z0-9]$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "page"
+        ],
+        "type": "object"
+      },
+      "ListDatabaseV2Response": {
+        "properties": {
+          "databases": {
+            "items": {
+              "$ref": "#/components/schemas/Database2"
+            },
+            "type": "array"
+          },
+          "page_info": {
+            "$ref": "#/components/schemas/DatabaseV2PageInfo"
+          }
+        },
+        "required": [
+          "databases",
+          "page_info"
+        ],
+        "type": "object"
+      },
+      "ListVersionsDatabaseGroupPayload": {
+        "properties": {
+          "limit": {
+            "format": "uint64",
+            "minimum": 0,
+            "nullable": true,
+            "type": "integer"
+          },
+          "newer_than": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "older_than": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ListVersionsDatabaseGroupResponse": {
+        "properties": {
+          "count": {
+            "format": "uint",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "generations": {
+            "items": {
+              "$ref": "#/components/schemas/Generation"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "generations",
+          "count"
+        ],
+        "type": "object"
+      },
+      "LiveMetricsForDBPayload": {
+        "properties": {
+          "db_ids": {
+            "items": {
+              "$ref": "#/components/schemas/DatabaseId"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "db_ids"
+        ],
+        "type": "object"
+      },
+      "LiveMetricsForDBResponse": {
+        "properties": {
+          "live_metrics": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DBLiveStatus"
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "live_metrics"
+        ],
+        "type": "object"
+      },
+      "LiveMetricsForGroupPayload": {
+        "properties": {
+          "group_ids": {
+            "items": {
+              "$ref": "#/components/schemas/DatabaseGroupId"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "group_ids"
+        ],
+        "type": "object"
+      },
+      "LiveMetricsForGroupResponse": {
+        "properties": {
+          "live_metrics": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/GroupLiveStatus"
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "live_metrics"
+        ],
+        "type": "object"
+      },
+      "OptimalConfigAPIQueryParams": {
+        "properties": {
+          "cdn_server_token": {
+            "$ref": "#/components/schemas/CDNServerToken"
+          }
+        },
+        "required": [
+          "cdn_server_token"
+        ],
+        "type": "object"
+      },
+      "OptimalConfigAPIResponse": {
+        "properties": {
+          "primary_regions": {
+            "description": "The primary region you should pick",
+            "items": {
+              "$ref": "#/components/schemas/Region2"
+            },
+            "type": "array"
+          },
+          "replica_regions": {
+            "description": "The replica region you should pick",
+            "items": {
+              "$ref": "#/components/schemas/Region2"
+            },
+            "type": "array"
+          },
+          "storage_region": {
+            "$ref": "#/components/schemas/StorageRegion",
+            "description": "The storage region you should pick"
+          }
+        },
+        "required": [
+          "storage_region",
+          "primary_regions",
+          "replica_regions"
+        ],
+        "type": "object"
+      },
+      "OptimalSingleConfigAPIQueryParams": {
+        "properties": {
+          "cdn_server_token": {
+            "$ref": "#/components/schemas/CDNServerToken2"
+          }
+        },
+        "required": [
+          "cdn_server_token"
+        ],
+        "type": "object"
+      },
+      "OptimalSingleConfigAPIResponse": {
+        "properties": {
+          "region": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Region2"
+              },
+              {
+                "nullable": true,
+                "type": []
+              }
+            ],
+            "description": "The region that should be piked for single region deployement, can be\n null if no region are available."
+          },
+          "storage_region": {
+            "$ref": "#/components/schemas/StorageRegion",
+            "description": "The storage region you should pick"
+          }
+        },
+        "required": [
+          "storage_region"
+        ],
+        "type": "object"
+      },
+      "PossibleRegion": {
+        "description": "Define a Region for Bunny.",
+        "enum": [
+          "AMS",
+          "ASB",
+          "AT",
+          "BE",
+          "BO",
+          "BR",
+          "BU",
+          "CA",
+          "CO",
+          "CZ",
+          "DE",
+          "DEN",
+          "DK",
+          "ES",
+          "FR",
+          "GA",
+          "GR",
+          "HK",
+          "HR",
+          "ID",
+          "IL",
+          "ISR",
+          "IT",
+          "JH",
+          "JP",
+          "LA",
+          "MI",
+          "MX",
+          "MY",
+          "NG",
+          "NY",
+          "PH",
+          "PL",
+          "SE",
+          "SG",
+          "SIL",
+          "SYD",
+          "TH",
+          "TR",
+          "TX",
+          "UK",
+          "WA"
+        ],
+        "type": "string"
+      },
+      "ReadDatabaseGroupParams": {
+        "properties": {
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId]."
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "type": "object"
+      },
+      "ReadDatabaseGroupResponse": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/DatabaseGroup",
+            "description": "The requested [DatabaseGroup]."
+          }
+        },
+        "required": [
+          "group"
+        ],
+        "type": "object"
+      },
+      "ReadDatabaseParams": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId]"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "ReadDatabaseParams2": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "ReadDatabaseParams3": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "ReadDatabaseResponse": {
+        "properties": {
+          "database": {
+            "$ref": "#/components/schemas/Database"
+          }
+        },
+        "required": [
+          "database"
+        ],
+        "type": "object"
+      },
+      "ReadDatabaseV2Params": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId"
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "ReadDatabaseV2Response": {
+        "properties": {
+          "db": {
+            "$ref": "#/components/schemas/Database2"
+          }
+        },
+        "required": [
+          "db"
+        ],
+        "type": "object"
+      },
+      "Region": {
+        "properties": {
+          "country": {
+            "$ref": "#/components/schemas/CountryCode"
+          },
+          "group": {
+            "$ref": "#/components/schemas/RegionGroups"
+          },
+          "id": {
+            "$ref": "#/components/schemas/PossibleRegion"
+          },
+          "latitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "latitude",
+          "longitude",
+          "group",
+          "country"
+        ],
+        "type": "object"
+      },
+      "Region2": {
+        "properties": {
+          "country": {
+            "$ref": "#/components/schemas/CountryCode"
+          },
+          "group": {
+            "$ref": "#/components/schemas/RegionGroups"
+          },
+          "id": {
+            "$ref": "#/components/schemas/PossibleRegion"
+          },
+          "latitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "longitude": {
+            "format": "double",
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "latitude",
+          "longitude",
+          "group",
+          "country"
+        ],
+        "type": "object"
+      },
+      "RegionGroups": {
+        "enum": [
+          "EU",
+          "NA",
+          "SA",
+          "AF",
+          "ASIA",
+          "OC"
+        ],
+        "type": "string"
+      },
+      "RestoreDatabaseResponse": {
+        "type": "object"
+      },
+      "RestoreVersionDatabasePayload": {
+        "properties": {
+          "generation": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "generation"
+        ],
+        "type": "object"
+      },
+      "SingleRegionChart": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Datapoint"
+            },
+            "type": "array"
+          },
+          "diff": {
+            "deprecated": true,
+            "description": "The difference between the result from the time window, will be between\n -1 and 1",
+            "format": "double",
+            "maximum": 1,
+            "minimum": -1,
+            "nullable": true,
+            "type": "number"
+          },
+          "unit": {
+            "$ref": "#/components/schemas/ChartUnit"
+          }
+        },
+        "required": [
+          "unit",
+          "data"
+        ],
+        "type": "object"
+      },
+      "StatDatabaseGroupParams": {
+        "properties": {
+          "from": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "to": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object"
+      },
+      "StatDatabaseGroupPath": {
+        "properties": {
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId]."
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "type": "object"
+      },
+      "StatDatabaseV2Params": {
+        "properties": {
+          "from": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "to": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object"
+      },
+      "StatDatabaseV2Path": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId]."
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "StatsDatabaseGroupResponse": {
+        "properties": {
+          "delegated_write_requests": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "latency": {
+            "$ref": "#/components/schemas/LatencySingleRegionChart"
+          },
+          "query_count": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "row_read_count": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "row_write_count": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "storage": {
+            "$ref": "#/components/schemas/SingleRegionChart",
+            "description": "Storage used"
+          }
+        },
+        "required": [
+          "row_read_count",
+          "row_write_count",
+          "delegated_write_requests",
+          "storage",
+          "latency",
+          "query_count"
+        ],
+        "type": "object"
+      },
+      "StatsDatabaseV2Response": {
+        "properties": {
+          "delegated_write_requests": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "latency": {
+            "$ref": "#/components/schemas/LatencySingleRegionChart"
+          },
+          "query_count": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "row_read_count": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "row_write_count": {
+            "$ref": "#/components/schemas/SingleRegionChart"
+          },
+          "storage": {
+            "$ref": "#/components/schemas/SingleRegionChart",
+            "description": "Storage used"
+          }
+        },
+        "required": [
+          "row_read_count",
+          "row_write_count",
+          "delegated_write_requests",
+          "storage",
+          "latency",
+          "query_count"
+        ],
+        "type": "object"
+      },
+      "StorageRegion": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/RegionGroups"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "group"
+        ],
+        "type": "object"
+      },
+      "UpdateDatabaseGroupParams": {
+        "properties": {
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId]."
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "type": "object"
+      },
+      "UpdateDatabaseGroupPayload": {
+        "properties": {
+          "display_name": {
+            "description": "A [DatabaseGroup] display name.\n Must be less than 64 Characters.",
+            "nullable": true,
+            "type": "string"
+          },
+          "primary_regions": {
+            "description": "The primary regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "replicas_regions": {
+            "description": "The replicas regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateDatabaseGroupResponse": {
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/DatabaseGroup",
+            "description": "The updated [DatabaseGroup]."
+          }
+        },
+        "required": [
+          "group"
+        ],
+        "type": "object"
+      },
+      "UpdateDatabaseV2Params": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseId]."
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "UpdateDatabaseV2Payload": {
+        "properties": {
+          "primary_regions": {
+            "description": "The primary regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "replicas_regions": {
+            "description": "The replicas regions expected for the Database",
+            "items": {
+              "$ref": "#/components/schemas/PossibleRegion"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "UpdateDatabaseV2Response": {
+        "properties": {
+          "db": {
+            "$ref": "#/components/schemas/Database2",
+            "description": "The updated [Database]."
+          }
+        },
+        "required": [
+          "db"
+        ],
+        "type": "object"
+      },
+      "UsageDatabaseGroupParams": {
+        "properties": {
+          "from": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "to": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object"
+      },
+      "UsageDatabaseGroupPath": {
+        "properties": {
+          "group_id": {
+            "$ref": "#/components/schemas/DatabaseGroupId",
+            "description": "The [DatabaseGroupId]."
+          }
+        },
+        "required": [
+          "group_id"
+        ],
+        "type": "object"
+      },
+      "UsageDatabaseGroupResponse": {
+        "properties": {
+          "avg_latency_ms": {
+            "description": "Average Latency this month",
+            "format": "double",
+            "type": "number"
+          },
+          "rows_read": {
+            "description": "Rows read this month",
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rows_written": {
+            "description": "Rows written this month",
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "rows_read",
+          "rows_written",
+          "avg_latency_ms"
+        ],
+        "type": "object"
+      },
+      "UsageDatabaseV2Params": {
+        "properties": {
+          "from": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "to": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object"
+      },
+      "UsageDatabaseV2Path": {
+        "properties": {
+          "db_id": {
+            "$ref": "#/components/schemas/DatabaseId",
+            "description": "The [DatabaseGroupId]."
+          }
+        },
+        "required": [
+          "db_id"
+        ],
+        "type": "object"
+      },
+      "UsageDatabaseV2Response": {
+        "properties": {
+          "avg_latency_ms": {
+            "description": "Average Latency this month",
+            "format": "double",
+            "type": "number"
+          },
+          "rows_read": {
+            "description": "Rows read this month",
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rows_written": {
+            "description": "Rows written this month",
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "rows_read",
+          "rows_written",
+          "avg_latency_ms"
+        ],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "AccessKey": {
+        "description": "The API key is required for performing account-specific actions, such as managing zones or other resources. You can have only one API key associated with your account, which can be viewed anytime in the dashboard.",
+        "in": "header",
+        "name": "AccessKey",
+        "type": "apiKey"
+      },
+      "Bearer": {
+        "description": "A JWT Token linked to your account.",
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "contact": {
+      "email": "support@bunny.net",
+      "name": "EdgeScripting Team",
+      "url": "https://bunny.net/"
+    },
+    "description": "",
+    "title": "Bunny Database Backend API",
+    "version": "0.0.144"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/v1/config": {
+      "get": {
+        "description": "List the configuration for the current environment",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListConfigAPIResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "List",
+        "tags": [
+          "Configuration"
+        ]
+      }
+    },
+    "/v1/config/limits": {
+      "get": {
+        "description": "Get current account limits and usage",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LimitsResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Get Limits",
+        "tags": [
+          "Configuration"
+        ]
+      }
+    },
+    "/v1/config/optimal": {
+      "get": {
+        "description": "Get the optimal configuration for setting up a database based on your location.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cdn_server_token",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CDNServerToken"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimalConfigAPIResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Optimal",
+        "tags": [
+          "Configuration"
+        ]
+      }
+    },
+    "/v1/config/optimal_single": {
+      "get": {
+        "description": "Get the optimal configuration for setting up a database based on your location for single region deployement",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cdn_server_token",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CDNServerToken2"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OptimalSingleConfigAPIResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Optimal Single Region",
+        "tags": [
+          "Configuration"
+        ]
+      }
+    },
+    "/v1/databases": {
+      "get": {
+        "description": "Returns a list of every databases of the user.",
+        "parameters": [
+          {
+            "description": "Filter by [DatabaseGroupId]",
+            "in": "query",
+            "name": "group_id",
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/DatabaseGroupId"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Filter by [DatabaseGroupId]"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListDatabaseResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "List",
+        "tags": [
+          "Database"
+        ]
+      },
+      "post": {
+        "description": "Create a new database in a DatabaseGroup.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDatabasePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDatabaseResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Create Database",
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/v1/databases/{db_id}": {
+      "delete": {
+        "description": "Delete a database in a DatabaseGroup.",
+        "parameters": [
+          {
+            "description": "The [DatabaseId]",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId]"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDatabaseResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Delete Database",
+        "tags": [
+          "Database"
+        ]
+      },
+      "get": {
+        "description": "Returns a database belonging to the user.",
+        "parameters": [
+          {
+            "description": "The [DatabaseId]",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId]"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadDatabaseResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Read Database",
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/v1/databases/{db_id}/auth/invalidate": {
+      "post": {
+        "description": "Invalidate Database auth tokens",
+        "parameters": [
+          {
+            "description": "The [DatabaseId] in a form of `db_<id>`",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId] in a form of `db_<id>`"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Invalidate Tokens",
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/v1/databases/{db_id}/auth/tokens": {
+      "post": {
+        "description": "Generate a Database Auth Token",
+        "parameters": [
+          {
+            "description": "The [DatabaseId] in a form of `db_<id>`",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId] in a form of `db_<id>`"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateTokenDatabasePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateTokenDatabaseResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Generate Token",
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/v1/databases/{db_id}/fork": {
+      "post": {
+        "description": "Fork database",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForkDatabasePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForkDatabaseResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "(preview) Fork",
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/v1/databases/{db_id}/list_versions": {
+      "post": {
+        "description": "List versions for a Database",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListVersionsDatabaseGroupPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListVersionsDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "(preview) List versions",
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/v1/databases/{db_id}/restore": {
+      "post": {
+        "description": "Restore Database generation, this is a destructive restore",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId"
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestoreVersionDatabasePayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestoreDatabaseResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "(preview) Destructive Restore",
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/v1/groups": {
+      "get": {
+        "description": "List database groups the user has access to.",
+        "parameters": [
+          {
+            "description": "Search over the group name",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "description": "Search over the group name",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "List",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      },
+      "post": {
+        "description": "Create a new DatabaseGroup for the user.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDatabaseGroupPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Create",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}": {
+      "delete": {
+        "description": "Delete a DatabaseGroup for an user.",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId] of the group.",
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseGroupId",
+              "description": "The [DatabaseGroupId] of the group."
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Delete Group",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      },
+      "get": {
+        "description": "Read a DatabaseGroup",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId].",
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseGroupId",
+              "description": "The [DatabaseGroupId]."
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Read",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      },
+      "patch": {
+        "description": "Update a DatabaseGroup for the user.",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId].",
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseGroupId",
+              "description": "The [DatabaseGroupId]."
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDatabaseGroupPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Update",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/aggregated_usage": {
+      "get": {
+        "description": "\nGet the aggregated usage for the time period for a Database Group.\n",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId].",
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseGroupId",
+              "description": "The [DatabaseGroupId]."
+            },
+            "style": "simple"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Aggregated Usage",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/auth/generate": {
+      "post": {
+        "description": "Generate a new token for the whole DatabaseGroup",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId].",
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseGroupId",
+              "description": "The [DatabaseGroupId]."
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateTokenDatabaseGroupPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateTokenDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Generate Token",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/auth/invalidate": {
+      "post": {
+        "description": "Invalidates all authorization tokens for the specified group.",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId] of the group.",
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseGroupId",
+              "description": "The [DatabaseGroupId] of the group."
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Invalidate Tokens",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      }
+    },
+    "/v1/groups/{group_id}/stats": {
+      "get": {
+        "description": "\nGet the associated stats for a Database Group.\n\nThe buckets are return by the starting hour.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "description": "The [DatabaseGroupId].",
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseGroupId",
+              "description": "The [DatabaseGroupId]."
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatsDatabaseGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Statistics",
+        "tags": [
+          "DatabaseGroup"
+        ]
+      }
+    },
+    "/v1/live/live_db": {
+      "post": {
+        "description": "Get the live metrics for databases, you need to pass the database ids with the header: `db-ids`.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LiveMetricsForDBPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiveMetricsForDBResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Live metrics DBs",
+        "tags": [
+          "Live Metrics"
+        ]
+      }
+    },
+    "/v1/live/live_group": {
+      "post": {
+        "description": "Get the live metrics for groups, you need to pass the database ids with the header: `group-ids`.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LiveMetricsForGroupPayload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiveMetricsForGroupResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Live metrics Groups",
+        "tags": [
+          "Live Metrics"
+        ]
+      }
+    },
+    "/v2/databases": {
+      "get": {
+        "description": "List database the user has access to.",
+        "parameters": [
+          {
+            "description": "Search over the group name",
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "description": "Search over the group name",
+              "pattern": "^[a-zA-Z0-9]$",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": true,
+            "schema": {
+              "format": "uint32",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Items per page. Defaults to 50; `0` is rejected.",
+            "in": "query",
+            "name": "per_page",
+            "schema": {
+              "default": 50,
+              "description": "Items per page. Defaults to 50; `0` is rejected.",
+              "format": "uint32",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "List",
+        "tags": [
+          "Database (v2)"
+        ]
+      },
+      "post": {
+        "description": "Create a new Database for a user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDatabaseV2Payload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Create",
+        "tags": [
+          "Database (v2)"
+        ]
+      }
+    },
+    "/v2/databases/active_usage": {
+      "get": {
+        "description": "\nGet active stats for Databases.\n",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActiveStatsResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Active stats",
+        "tags": [
+          "Database (v2)"
+        ]
+      }
+    },
+    "/v2/databases/{db_id}": {
+      "delete": {
+        "description": "Delete a Database for a user.",
+        "parameters": [
+          {
+            "description": "The [DatabaseId] of the database.",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId] of the database."
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Delete Database",
+        "tags": [
+          "Database (v2)"
+        ]
+      },
+      "get": {
+        "description": "Read a Database",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Read",
+        "tags": [
+          "Database (v2)"
+        ]
+      },
+      "patch": {
+        "description": "Update a Database for the user.",
+        "parameters": [
+          {
+            "description": "The [DatabaseId].",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId]."
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDatabaseV2Payload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Update",
+        "tags": [
+          "Database (v2)"
+        ]
+      }
+    },
+    "/v2/databases/{db_id}/auth/generate": {
+      "put": {
+        "description": "Generate a new token for the whole Database",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId].",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseGroupId]."
+            },
+            "style": "simple"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateTokenDatabaseV2Payload"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateTokenDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Generate Token",
+        "tags": [
+          "Database (v2)"
+        ]
+      }
+    },
+    "/v2/databases/{db_id}/auth/revoke": {
+      "post": {
+        "description": "Invalidates all authorization tokens for the specified group.",
+        "parameters": [
+          {
+            "description": "The [DatabaseId] of the group.",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId] of the group."
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "no content"
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Invalidate Tokens",
+        "tags": [
+          "Database (v2)"
+        ]
+      }
+    },
+    "/v2/databases/{db_id}/statistics": {
+      "get": {
+        "description": "\nGet the associated stats for a Database.\n\nThe buckets are return by the starting hour.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "description": "The [DatabaseId].",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseId]."
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatsDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Statistics",
+        "tags": [
+          "Database (v2)"
+        ]
+      }
+    },
+    "/v2/databases/{db_id}/usage": {
+      "get": {
+        "description": "\nGet the aggregated usage for the time period for a Database.\n",
+        "parameters": [
+          {
+            "description": "The [DatabaseGroupId].",
+            "in": "path",
+            "name": "db_id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatabaseId",
+              "description": "The [DatabaseGroupId]."
+            },
+            "style": "simple"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageDatabaseV2Response"
+                }
+              }
+            },
+            "description": ""
+          },
+          "4XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          },
+          "5XX": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppError"
+                }
+              }
+            },
+            "description": "A default error response for most API errors."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          },
+          {
+            "AccessKey": []
+          }
+        ],
+        "summary": "Aggregated Usage",
+        "tags": [
+          "Database (v2)"
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.bunny.net/database"
+    }
+  ],
+  "tags": [
+    {
+      "description": "\nAll databases are parts of a [DatabaseGroup]. This [DatabaseGroup] is the entity we start and stop in some locations, it's the entity using ressources and sharing them to the whole databases underneeth. Every database under a [DatabaseGroup] are going to share the same Libsql Version.\n\nThose [DatabaseGroup] when hosted somewhere are either a Primary or a Replica. You do not need to handle this as this is autopiloted by Bunny itself.\n        ",
+      "name": "DatabaseGroup"
+    },
+    {
+      "description": "\nA [Database] is part of a [DatabaseGroup].\n        ",
+      "name": "Database"
+    },
+    {
+      "description": "\nRequest associated to the live metrics.\n        ",
+      "name": "Live Metrics"
+    },
+    {
+      "description": "\nGeneral requests to get the actual configuration of the Environment.\n        ",
+      "name": "Configuration"
+    }
+  ]
+}

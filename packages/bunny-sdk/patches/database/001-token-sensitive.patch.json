@@ -1,0 +1,10 @@
+{
+  "description": "The generated database token is a bearer JWT with full or read-only access to the database. Mark it sensitive so the SDK delivers it as Redacted.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/net.bunny.database#GenerateTokenDatabaseV2Response/members/token/traits/smithy.api#sensitive",
+      "value": {}
+    }
+  ]
+}

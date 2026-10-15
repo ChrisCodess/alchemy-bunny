@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alchemy on bunny.net</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <h1>Deployed with Alchemy to bunny.net</h1>
+    <p><a href="/about/">About</a></p>
+
+    <section>
+      <h2>Edge Script</h2>
+      <p>This button calls a bunny.net Edge Script at <code>__API_URL__</code>.</p>
+      <button id="call-edge">Call the Edge Script</button>
+      <pre id="edge-result">(not called yet)</pre>
+    </section>
+
+    <section>
+      <h2>Download</h2>
+      <p>
+        <a href="/downloads/alchemy-on-bunny.txt">alchemy-on-bunny.txt</a> is a text file. An edge rule
+        serves it with <code>Content-Disposition: attachment</code>, so the browser downloads it instead of
+        showing it.
+      </p>
+    </section>
+
+    <script src="/assets/app.js"></script>
+  </body>
+</html>

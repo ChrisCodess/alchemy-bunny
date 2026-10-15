@@ -1,0 +1,48 @@
+{
+  "description": "GET /pullzone is declared as a plain array, but the official Bunny CLI (sites/api.ts fetchPullZones) handles both a plain array (the complete result) and a {Items, CurrentPage, HasMoreItems} page envelope. Model both.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/components/schemas/PullZoneListPage",
+      "value": {
+        "type": "object",
+        "properties": {
+          "Items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PullZoneModel"
+            }
+          },
+          "CurrentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TotalItems": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "HasMoreItems": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "op": "replace",
+      "path": "/paths/~1pullzone/get/responses/200/content/application~1json/schema",
+      "value": {
+        "oneOf": [
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PullZoneModel"
+            }
+          },
+          {
+            "$ref": "#/components/schemas/PullZoneListPage"
+          }
+        ]
+      }
+    }
+  ]
+}

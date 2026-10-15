@@ -1,0 +1,16 @@
+{
+  "description": "GET /compute/script returns PaginationListModelOfEdgeScriptModel and pages by `page`/`perPage`.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/net.bunny.compute#ListEdgeScripts/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "CurrentPage",
+        "items": "Items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

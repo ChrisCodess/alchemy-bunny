@@ -1,0 +1,18 @@
+{
+  // Emits lib/ (JavaScript + declarations) for Node consumers; Bun and
+  // Workers use src/ directly (see the package's `exports` conditions).
+  "extends": "../../tsconfig.json",
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "rewriteRelativeImportExtensions": true,
+    // Resolve the sibling package through its published `exports` (its
+    // built lib/), not the workspace sources the root `paths` point at.
+    "paths": {}
+  }
+}

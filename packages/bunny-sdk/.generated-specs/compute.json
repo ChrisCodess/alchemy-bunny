@@ -1,0 +1,1813 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "net.bunny.compute#EdgeScriptTypes2": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        },
+        "_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 2
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "0 = DNS\n1 = CDN\n2 = Middleware"
+      }
+    },
+    "net.bunny.compute#ListEdgeScriptsRequestTypeList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.compute#EdgeScriptTypes2"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#ListEdgeScriptsRequest": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "net.bunny.compute#ListEdgeScriptsRequestTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "Filter by edge script type"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "perPage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "perPage"
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "The search term that will be used to filter the results"
+          }
+        },
+        "includeLinkedPullzones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "includeLinkedPullzones",
+            "smithy.api#documentation": "Include linked pullzones"
+          }
+        },
+        "integrationId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "integrationId",
+            "smithy.api#documentation": "Filter by linked integration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#PaginationListModelOfEdgeScriptModel": {
+      "type": "structure",
+      "members": {
+        "CurrentPage": {
+          "target": "smithy.api#Integer"
+        },
+        "HasMoreItems": {
+          "target": "smithy.api#Boolean"
+        },
+        "Items": {
+          "target": "net.bunny.compute#PaginationListModelOfEdgeScriptModelItemsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "TotalItems": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptModel": {
+      "type": "structure",
+      "members": {
+        "CurrentReleaseId": {
+          "target": "smithy.api#Integer"
+        },
+        "DefaultHostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "DeploymentKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "EdgeScriptVariables": {
+          "target": "net.bunny.compute#EdgeScriptModelEdgeScriptVariablesList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Id": {
+          "target": "smithy.api#Integer"
+        },
+        "Integration": {
+          "target": "net.bunny.compute#SourceCodeIntegrationModel",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "IntegrationId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "LastModified": {
+          "target": "smithy.api#String"
+        },
+        "LinkedPullZones": {
+          "target": "net.bunny.compute#EdgeScriptModelLinkedPullZonesList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "MonthlyCost": {
+          "target": "smithy.api#Double"
+        },
+        "MonthlyCpuTime": {
+          "target": "smithy.api#Integer"
+        },
+        "MonthlyRequestCount": {
+          "target": "smithy.api#Integer"
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "RepositoryId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ScriptType": {
+          "target": "net.bunny.compute#EdgeScriptTypes"
+        },
+        "SystemHostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptVariableModel": {
+      "type": "structure",
+      "members": {
+        "DefaultValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Id": {
+          "target": "smithy.api#Integer"
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Required": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptModelEdgeScriptVariablesList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.compute#EdgeScriptVariableModel"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#SourceCodeIntegrationModel": {
+      "type": "structure",
+      "members": {
+        "DeployConfiguration": {
+          "target": "net.bunny.compute#DeployConfigurationModel",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "IntegrationId": {
+          "target": "smithy.api#Integer"
+        },
+        "RepositorySettings": {
+          "target": "net.bunny.compute#SourceCodeRepositorySettingsModel",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#DeployConfigurationModel": {
+      "type": "structure",
+      "members": {
+        "Branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "BuildCommand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "CreateWorkflow": {
+          "target": "smithy.api#Boolean"
+        },
+        "EntryFile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "InstallCommand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#SourceCodeRepositorySettingsModel": {
+      "type": "structure",
+      "members": {
+        "Id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Private": {
+          "target": "smithy.api#Boolean"
+        },
+        "TemplateUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#LinkedPullZone": {
+      "type": "structure",
+      "members": {
+        "DefaultHostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Id": {
+          "target": "smithy.api#Integer"
+        },
+        "PullZoneName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptModelLinkedPullZonesList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.compute#LinkedPullZone"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptTypes": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        },
+        "_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 2
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "0 = DNS\n1 = CDN\n2 = Middleware"
+      }
+    },
+    "net.bunny.compute#PaginationListModelOfEdgeScriptModelItemsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.compute#EdgeScriptModel"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#ListEdgeScripts": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#ListEdgeScriptsRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#PaginationListModelOfEdgeScriptModel"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Edge Scripts",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "CurrentPage",
+          "items": "Items",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "net.bunny.compute#CreateEdgeScriptRequest": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "CreateLinkedPullZone": {
+          "target": "smithy.api#Boolean"
+        },
+        "Integration": {
+          "target": "net.bunny.compute#SourceCodeIntegrationModel",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "LinkedPullZoneName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ScriptType": {
+          "target": "net.bunny.compute#EdgeScriptTypes"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#CreateEdgeScript": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#CreateEdgeScriptRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Edge Script"
+      }
+    },
+    "net.bunny.compute#GetEdgeScriptRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that will be returned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#GetEdgeScript": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#GetEdgeScriptRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Edge Script"
+      }
+    },
+    "net.bunny.compute#UpdateEdgeScriptRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that will be updated"
+          }
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ScriptType": {
+          "target": "net.bunny.compute#EdgeScriptTypes"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#UpdateEdgeScript": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#UpdateEdgeScriptRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Edge Script"
+      }
+    },
+    "net.bunny.compute#DeleteEdgeScriptRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that will be deleted."
+          }
+        },
+        "deleteLinkedPullZones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "deleteLinkedPullZones",
+            "smithy.api#documentation": "Deletes all pull zones linked to this edge script if true, otherwise changes origin to landing page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#DeleteEdgeScript": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#DeleteEdgeScriptRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/compute/script/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Edge Script"
+      }
+    },
+    "net.bunny.compute#GetEdgeScriptCodeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the code for which the script that will be returned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#EdgeScriptCodeModel": {
+      "type": "structure",
+      "members": {
+        "Code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "LastModified": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#GetEdgeScriptCode": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#GetEdgeScriptCodeRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptCodeModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script/{id}/code",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Code"
+      }
+    },
+    "net.bunny.compute#SetEdgeScriptCodeRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the code for which the script that will be returned"
+          }
+        },
+        "Code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#SetEdgeScriptCode": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#SetEdgeScriptCodeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/code",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set Code"
+      }
+    },
+    "net.bunny.compute#RotateEdgeScriptDeploymentKeyRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the edge script that should have deployment key rotated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#RotateEdgeScriptDeploymentKey": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#RotateEdgeScriptDeploymentKeyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/deploymentKey/rotate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Rotate Deployment Key"
+      }
+    },
+    "net.bunny.compute#PublishEdgeScriptRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Publishes the current code as a release"
+          }
+        },
+        "Note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#PublishEdgeScript": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#PublishEdgeScriptRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/publish",
+          "code": 200
+        },
+        "smithy.api#documentation": "Publish Release"
+      }
+    },
+    "net.bunny.compute#PublishEdgeScriptReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Publishes the current code as a release"
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The UUID of the script release that will be published"
+          }
+        },
+        "Note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#PublishEdgeScriptRelease": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#PublishEdgeScriptReleaseRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/publish/{uuid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Publish Release"
+      }
+    },
+    "net.bunny.compute#ListEdgeScriptReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script for which published releases would be returned"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "perPage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "perPage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#PaginationListModelOfEdgeScriptReleaseModel": {
+      "type": "structure",
+      "members": {
+        "CurrentPage": {
+          "target": "smithy.api#Integer"
+        },
+        "HasMoreItems": {
+          "target": "smithy.api#Boolean"
+        },
+        "Items": {
+          "target": "net.bunny.compute#PaginationListModelOfEdgeScriptReleaseModelItemsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "TotalItems": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptReleaseModel": {
+      "type": "structure",
+      "members": {
+        "Author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "AuthorEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "CommitSha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "DatePublished": {
+          "target": "smithy.api#String"
+        },
+        "DateReleased": {
+          "target": "smithy.api#String"
+        },
+        "Deleted": {
+          "target": "smithy.api#Boolean"
+        },
+        "Id": {
+          "target": "smithy.api#Integer"
+        },
+        "Note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Status": {
+          "target": "net.bunny.compute#EdgeScriptReleaseStatus"
+        },
+        "Uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptReleaseStatus": {
+      "type": "intEnum",
+      "members": {
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 0
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 1
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "0 = Archived\n1 = Live"
+      }
+    },
+    "net.bunny.compute#PaginationListModelOfEdgeScriptReleaseModelItemsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.compute#EdgeScriptReleaseModel"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#ListEdgeScriptReleases": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#ListEdgeScriptReleasesRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#PaginationListModelOfEdgeScriptReleaseModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script/{id}/releases",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Releases"
+      }
+    },
+    "net.bunny.compute#GetActiveEdgeScriptReleaseRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script for which active release would be returned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#GetActiveEdgeScriptRelease": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#GetActiveEdgeScriptReleaseRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptReleaseModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script/{id}/releases/active",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Active Release"
+      }
+    },
+    "net.bunny.compute#ListEdgeScriptSecretsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script to list secrets"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#ListEdgeScriptSecretsModel": {
+      "type": "structure",
+      "members": {
+        "Secrets": {
+          "target": "net.bunny.compute#ListEdgeScriptSecretsModelSecretsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptSecretModel": {
+      "type": "structure",
+      "members": {
+        "Id": {
+          "target": "smithy.api#Integer"
+        },
+        "LastModified": {
+          "target": "smithy.api#String"
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#ListEdgeScriptSecretsModelSecretsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.compute#EdgeScriptSecretModel"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#ListEdgeScriptSecrets": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#ListEdgeScriptSecretsRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#ListEdgeScriptSecretsModel"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script/{id}/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Secrets"
+      }
+    },
+    "net.bunny.compute#AddEdgeScriptSecretRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that will have the secret added"
+          }
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#AddEdgeScriptSecret": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#AddEdgeScriptSecretRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptSecretModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Secret"
+      }
+    },
+    "net.bunny.compute#UpsertEdgeScriptSecretRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that will have the secret upserted"
+          }
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#UpsertEdgeScriptSecret": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#UpsertEdgeScriptSecretRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptSecretModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/compute/script/{id}/secrets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upsert Secret"
+      }
+    },
+    "net.bunny.compute#UpdateEdgeScriptSecretRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that will have the secret updated"
+          }
+        },
+        "secretId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the secret that will be updated"
+          }
+        },
+        "Secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#UpdateEdgeScriptSecret": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#UpdateEdgeScriptSecretRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptSecretModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/secrets/{secretId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Secret"
+      }
+    },
+    "net.bunny.compute#DeleteEdgeScriptSecretRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that contains the secret"
+          }
+        },
+        "secretId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the secret that should be deleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#DeleteEdgeScriptSecret": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#DeleteEdgeScriptSecretRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/compute/script/{id}/secrets/{secretId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Secret"
+      }
+    },
+    "net.bunny.compute#GetEdgeScriptStatisticsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the Edge Script for which the statistics will be returned"
+          }
+        },
+        "dateFrom": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dateFrom",
+            "smithy.api#documentation": "(Optional) The start date of the statistics. If no value is passed, the last 30 days will be returned"
+          }
+        },
+        "dateTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "dateTo",
+            "smithy.api#documentation": "(Optional) The end date of the statistics. If no value is passed, the last 30 days will be returned"
+          }
+        },
+        "loadLatest": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "loadLatest",
+            "smithy.api#documentation": "(Optional) Load most recent data as soon as it's available"
+          }
+        },
+        "hourly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "hourly",
+            "smithy.api#documentation": "(Optional) If true, the statistics data will be returned in hourly groupping."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#EdgeScriptStatisticsModel": {
+      "type": "structure",
+      "members": {
+        "AverageCpuTimeChart": {
+          "target": "net.bunny.compute#EdgeScriptStatisticsModelAverageCpuTimeChartMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "AverageCpuTimePerExecution": {
+          "target": "smithy.api#Double"
+        },
+        "RequestsServedChart": {
+          "target": "net.bunny.compute#EdgeScriptStatisticsModelRequestsServedChartMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "TotalCpuTimeChart": {
+          "target": "net.bunny.compute#EdgeScriptStatisticsModelTotalCpuTimeChartMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "TotalCpuUsed": {
+          "target": "smithy.api#Double"
+        },
+        "TotalMonthlyCost": {
+          "target": "smithy.api#Double"
+        },
+        "TotalRequestsServed": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptStatisticsModelAverageCpuTimeChartMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptStatisticsModelRequestsServedChartMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#EdgeScriptStatisticsModelTotalCpuTimeChartMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {}
+    },
+    "net.bunny.compute#GetEdgeScriptStatistics": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#GetEdgeScriptStatisticsRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptStatisticsModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script/{id}/statistics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Edge Script Statistics"
+      }
+    },
+    "net.bunny.compute#UpsertEdgeScriptVariableRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script which will have the variable upserted"
+          }
+        },
+        "DefaultValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#UpsertEdgeScriptVariable": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#UpsertEdgeScriptVariableRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptVariableModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/compute/script/{id}/variables",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upsert Variable"
+      }
+    },
+    "net.bunny.compute#AddEdgeScriptVariableRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that will be updated"
+          }
+        },
+        "DefaultValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "Required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#AddEdgeScriptVariable": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#AddEdgeScriptVariableRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptVariableModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/variables/add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add Variable"
+      }
+    },
+    "net.bunny.compute#GetEdgeScriptVariableRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that contains the variable"
+          }
+        },
+        "variableId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the Environment Variable that should be returned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#GetEdgeScriptVariable": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#GetEdgeScriptVariableRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptVariableModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/compute/script/{id}/variables/{variableId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Variable"
+      }
+    },
+    "net.bunny.compute#UpdateEdgeScriptVariableRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that contains the variable"
+          }
+        },
+        "variableId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the Environment Variable that will be updated"
+          }
+        },
+        "DefaultValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "Required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#UpdateEdgeScriptVariable": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#UpdateEdgeScriptVariableRequest"
+      },
+      "output": {
+        "target": "net.bunny.compute#EdgeScriptVariableModel"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/compute/script/{id}/variables/{variableId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Variable"
+      }
+    },
+    "net.bunny.compute#DeleteEdgeScriptVariableRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the script that contains the Environment Variable"
+          }
+        },
+        "variableId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the Environment Variable that should be deleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.compute#DeleteEdgeScriptVariable": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.compute#DeleteEdgeScriptVariableRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.compute#BadRequest"
+        },
+        {
+          "target": "net.bunny.compute#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/compute/script/{id}/variables/{variableId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Variable"
+      }
+    },
+    "net.bunny.compute#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "net.bunny.compute#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "net.bunny.compute#BunnyCompute": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "net.bunny.compute#ListEdgeScripts"
+        },
+        {
+          "target": "net.bunny.compute#CreateEdgeScript"
+        },
+        {
+          "target": "net.bunny.compute#GetEdgeScript"
+        },
+        {
+          "target": "net.bunny.compute#UpdateEdgeScript"
+        },
+        {
+          "target": "net.bunny.compute#DeleteEdgeScript"
+        },
+        {
+          "target": "net.bunny.compute#GetEdgeScriptCode"
+        },
+        {
+          "target": "net.bunny.compute#SetEdgeScriptCode"
+        },
+        {
+          "target": "net.bunny.compute#RotateEdgeScriptDeploymentKey"
+        },
+        {
+          "target": "net.bunny.compute#PublishEdgeScript"
+        },
+        {
+          "target": "net.bunny.compute#PublishEdgeScriptRelease"
+        },
+        {
+          "target": "net.bunny.compute#ListEdgeScriptReleases"
+        },
+        {
+          "target": "net.bunny.compute#GetActiveEdgeScriptRelease"
+        },
+        {
+          "target": "net.bunny.compute#ListEdgeScriptSecrets"
+        },
+        {
+          "target": "net.bunny.compute#AddEdgeScriptSecret"
+        },
+        {
+          "target": "net.bunny.compute#UpsertEdgeScriptSecret"
+        },
+        {
+          "target": "net.bunny.compute#UpdateEdgeScriptSecret"
+        },
+        {
+          "target": "net.bunny.compute#DeleteEdgeScriptSecret"
+        },
+        {
+          "target": "net.bunny.compute#GetEdgeScriptStatistics"
+        },
+        {
+          "target": "net.bunny.compute#UpsertEdgeScriptVariable"
+        },
+        {
+          "target": "net.bunny.compute#AddEdgeScriptVariable"
+        },
+        {
+          "target": "net.bunny.compute#GetEdgeScriptVariable"
+        },
+        {
+          "target": "net.bunny.compute#UpdateEdgeScriptVariable"
+        },
+        {
+          "target": "net.bunny.compute#DeleteEdgeScriptVariable"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "bunny.net Compute API",
+        "smithy.api#documentation": "<img src='https://bunny.net/v2/images/bunnynet-logo-dark.svg' style='width: 200px;' alt='bunny.net Logo'>\n               Edge Scripts and Compute API documentation for bunny.net. This API provides endpoints for managing edge scripts, releases, secrets, variables, and other compute-related resources."
+      }
+    }
+  }
+}

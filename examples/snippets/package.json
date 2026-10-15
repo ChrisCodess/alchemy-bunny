@@ -1,0 +1,16 @@
+{
+  "name": "example-snippets",
+  "private": true,
+  "type": "module",
+  "description": "The code examples of docs/, typechecked with the repository. Not deployed.",
+  "dependencies": {
+    "alchemy-bunny": "workspace:*",
+    "alchemy-bunny-sdk": "workspace:*",
+    "@alchemy.run/better-auth": "2.0.0-beta.79",
+    "alchemy": "2.0.0-beta.79",
+    "better-auth": "1.7.6",
+    "effect": "4.0.0-rc.117",
+    "kysely": "0.29.6",
+    "@bunny.net/edgescript-sdk": "0.13.0"
+  }
+}

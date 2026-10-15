@@ -1,0 +1,32 @@
+{
+  "name": "alchemy-bunny-workspace",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "bun run --cwd packages/bunny-sdk build && bun run --cwd packages/bunny build",
+    "typecheck": "tsc -p . --noEmit",
+    "test": "bun test",
+    "pack": "bun scripts/pack.ts"
+  },
+  "devDependencies": {
+    "@alchemy.run/frontend-frameworks": "2.0.0-beta.79",
+    "@types/bun": "latest",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "effect": "4.0.0-rc.117",
+    "@effect/platform-bun": "4.0.0-rc.117",
+    "@effect/platform-node": "4.0.0-rc.117",
+    "@effect/platform-node-shared": "4.0.0-rc.117",
+    "@effect/sql-d1": "4.0.0-rc.117",
+    "@effect/sql-sqlite-do": "4.0.0-rc.117",
+    "@effect/vitest": "4.0.0-rc.117"
+  },
+  "patchedDependencies": {
+    "alchemy@2.0.0-beta.79": "patches/alchemy@2.0.0-beta.79.patch"
+  }
+}

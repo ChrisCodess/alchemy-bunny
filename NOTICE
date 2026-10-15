@@ -1,0 +1,17 @@
+alchemy-bunny
+Copyright 2026 Chris Almond
+
+This product is licensed under the Apache License, Version 2.0 (LICENSE).
+
+Portions are adapted from Alchemy (https://github.com/alchemy-run/alchemy),
+Copyright 2026 Functionless Corp., licensed under the Apache License,
+Version 2.0: the Edge Script runtime context and bootstrap
+(packages/bunny/src/EdgeScriptRuntime.ts, packages/bunny/src/Runtime/Bootstrap.ts)
+follow Alchemy's Lambda and Cloudflare Worker runtime; the capability layout
+(ReadStorageZone, QueryDatabase, FetchEdgeScript, ...) follows its Cloudflare
+R2, D1 and Workers capabilities; parts of the D1-style query client follow
+Alchemy's Cloudflare D1 QueryDatabase.
+
+packages/bunny-sdk/src/services/* is generated from bunny.net's published
+OpenAPI documents with Alchemy's distilled code generator
+(https://github.com/alchemy-run/distilled, Apache License, Version 2.0).

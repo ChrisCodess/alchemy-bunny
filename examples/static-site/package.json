@@ -1,0 +1,18 @@
+{
+  "name": "example-static-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun build.ts",
+    "plan": "alchemy plan",
+    "deploy": "alchemy deploy",
+    "destroy": "alchemy destroy"
+  },
+  "dependencies": {
+    "alchemy-bunny": "workspace:*",
+    "@bunny.net/edgescript-sdk": "0.13.0",
+    "@effect/platform-bun": "4.0.0-rc.117",
+    "alchemy": "2.0.0-beta.79",
+    "effect": "4.0.0-rc.117"
+  }
+}

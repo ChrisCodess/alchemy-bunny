@@ -1,0 +1,44 @@
+# dependencies (bun install)
+node_modules
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files (every variant: .env, .env.local, .env.probe, …)
+.env
+.env.*
+!.env.example
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# alchemy local state
+.alchemy
+
+# TanStack Start plugin scratch output
+.tanstack
+
+# package build output (bun run build) and pack tarballs
+packages/*/lib
+packages/*/LICENSE
+packages/*/NOTICE
+release-packages

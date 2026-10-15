@@ -1,0 +1,3191 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "net.bunny.database#ListConfigAPIResponse": {
+      "type": "structure",
+      "members": {
+        "primary_regions": {
+          "target": "net.bunny.database#ListConfigAPIResponsePrimaryRegionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "replica_regions": {
+          "target": "net.bunny.database#ListConfigAPIResponseReplicaRegionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "storage_region_available": {
+          "target": "net.bunny.database#ListConfigAPIResponseStorageRegionAvailableList",
+          "traits": {
+            "smithy.api#documentation": "The Storage Regions available",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#Region": {
+      "type": "structure",
+      "members": {
+        "country": {
+          "target": "net.bunny.database#CountryCode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "group": {
+          "target": "net.bunny.database#RegionGroups",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "net.bunny.database#PossibleRegion",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#CountryCode": {
+      "type": "structure",
+      "members": {
+        "alpha2": {
+          "target": "net.bunny.database#CountryCodeAlpha2",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#CountryCodeAlpha2": {
+      "type": "enum",
+      "members": {
+        "AF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AF"
+          }
+        },
+        "AX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AX"
+          }
+        },
+        "AL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AL"
+          }
+        },
+        "DZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DZ"
+          }
+        },
+        "AS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AS"
+          }
+        },
+        "AD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AD"
+          }
+        },
+        "AO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AO"
+          }
+        },
+        "AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI"
+          }
+        },
+        "AQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AQ"
+          }
+        },
+        "AG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AG"
+          }
+        },
+        "AR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AR"
+          }
+        },
+        "AM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AM"
+          }
+        },
+        "AW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AW"
+          }
+        },
+        "AU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AU"
+          }
+        },
+        "AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AT"
+          }
+        },
+        "AZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AZ"
+          }
+        },
+        "BS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BS"
+          }
+        },
+        "BH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BH"
+          }
+        },
+        "BD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BD"
+          }
+        },
+        "BB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BB"
+          }
+        },
+        "BY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY"
+          }
+        },
+        "BE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BE"
+          }
+        },
+        "BZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BZ"
+          }
+        },
+        "BJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BJ"
+          }
+        },
+        "BM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BM"
+          }
+        },
+        "BT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BT"
+          }
+        },
+        "BO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BO"
+          }
+        },
+        "BQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BQ"
+          }
+        },
+        "BA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BA"
+          }
+        },
+        "BW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BW"
+          }
+        },
+        "BV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BV"
+          }
+        },
+        "BR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BR"
+          }
+        },
+        "IO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IO"
+          }
+        },
+        "BN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BN"
+          }
+        },
+        "BG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BG"
+          }
+        },
+        "BF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BF"
+          }
+        },
+        "BI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BI"
+          }
+        },
+        "CV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CV"
+          }
+        },
+        "KH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KH"
+          }
+        },
+        "CM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CM"
+          }
+        },
+        "CA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA"
+          }
+        },
+        "KY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KY"
+          }
+        },
+        "CF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CF"
+          }
+        },
+        "TD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TD"
+          }
+        },
+        "CL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CL"
+          }
+        },
+        "CN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CN"
+          }
+        },
+        "CX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CX"
+          }
+        },
+        "CC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CC"
+          }
+        },
+        "CO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CO"
+          }
+        },
+        "KM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KM"
+          }
+        },
+        "CG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CG"
+          }
+        },
+        "CD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CD"
+          }
+        },
+        "CK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CK"
+          }
+        },
+        "CR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CR"
+          }
+        },
+        "CI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CI"
+          }
+        },
+        "HR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HR"
+          }
+        },
+        "CU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CU"
+          }
+        },
+        "CW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CW"
+          }
+        },
+        "CY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CY"
+          }
+        },
+        "CZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CZ"
+          }
+        },
+        "DK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DK"
+          }
+        },
+        "DJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DJ"
+          }
+        },
+        "DM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DM"
+          }
+        },
+        "DO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DO"
+          }
+        },
+        "EC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EC"
+          }
+        },
+        "EG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EG"
+          }
+        },
+        "SV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SV"
+          }
+        },
+        "GQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GQ"
+          }
+        },
+        "ER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ER"
+          }
+        },
+        "EE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EE"
+          }
+        },
+        "SZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SZ"
+          }
+        },
+        "ET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ET"
+          }
+        },
+        "FK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FK"
+          }
+        },
+        "FO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FO"
+          }
+        },
+        "FJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FJ"
+          }
+        },
+        "FI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FI"
+          }
+        },
+        "FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FR"
+          }
+        },
+        "GF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GF"
+          }
+        },
+        "PF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PF"
+          }
+        },
+        "TF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TF"
+          }
+        },
+        "GA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GA"
+          }
+        },
+        "GM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GM"
+          }
+        },
+        "GE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GE"
+          }
+        },
+        "DE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE"
+          }
+        },
+        "GH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GH"
+          }
+        },
+        "GI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GI"
+          }
+        },
+        "GR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GR"
+          }
+        },
+        "GL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GL"
+          }
+        },
+        "GD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GD"
+          }
+        },
+        "GP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GP"
+          }
+        },
+        "GU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GU"
+          }
+        },
+        "GT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GT"
+          }
+        },
+        "GG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GG"
+          }
+        },
+        "GN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GN"
+          }
+        },
+        "GW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GW"
+          }
+        },
+        "GY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GY"
+          }
+        },
+        "HT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HT"
+          }
+        },
+        "HM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HM"
+          }
+        },
+        "VA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VA"
+          }
+        },
+        "HN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HN"
+          }
+        },
+        "HK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HK"
+          }
+        },
+        "HU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HU"
+          }
+        },
+        "IS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IS"
+          }
+        },
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ID"
+          }
+        },
+        "IR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IR"
+          }
+        },
+        "IQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IQ"
+          }
+        },
+        "IE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IE"
+          }
+        },
+        "IM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IM"
+          }
+        },
+        "IL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL"
+          }
+        },
+        "IT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IT"
+          }
+        },
+        "JM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JM"
+          }
+        },
+        "JP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JP"
+          }
+        },
+        "JE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JE"
+          }
+        },
+        "JO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JO"
+          }
+        },
+        "KZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KZ"
+          }
+        },
+        "KE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KE"
+          }
+        },
+        "KI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KI"
+          }
+        },
+        "KP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KP"
+          }
+        },
+        "KR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KR"
+          }
+        },
+        "KW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KW"
+          }
+        },
+        "KG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KG"
+          }
+        },
+        "LA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LA"
+          }
+        },
+        "LV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LV"
+          }
+        },
+        "LB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LB"
+          }
+        },
+        "LS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LS"
+          }
+        },
+        "LR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LR"
+          }
+        },
+        "LY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LY"
+          }
+        },
+        "LI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LI"
+          }
+        },
+        "LT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LT"
+          }
+        },
+        "LU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LU"
+          }
+        },
+        "MO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MO"
+          }
+        },
+        "MG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MG"
+          }
+        },
+        "MW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MW"
+          }
+        },
+        "MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MY"
+          }
+        },
+        "MV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MV"
+          }
+        },
+        "ML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ML"
+          }
+        },
+        "MT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MT"
+          }
+        },
+        "MH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MH"
+          }
+        },
+        "MQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MQ"
+          }
+        },
+        "MR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MR"
+          }
+        },
+        "MU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MU"
+          }
+        },
+        "YT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YT"
+          }
+        },
+        "MX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MX"
+          }
+        },
+        "FM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FM"
+          }
+        },
+        "MD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MD"
+          }
+        },
+        "MC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MC"
+          }
+        },
+        "MN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MN"
+          }
+        },
+        "ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ME"
+          }
+        },
+        "MS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MS"
+          }
+        },
+        "MA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MA"
+          }
+        },
+        "MZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MZ"
+          }
+        },
+        "MM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MM"
+          }
+        },
+        "NA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NA"
+          }
+        },
+        "NR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NR"
+          }
+        },
+        "NP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NP"
+          }
+        },
+        "NL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NL"
+          }
+        },
+        "NC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NC"
+          }
+        },
+        "NZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NZ"
+          }
+        },
+        "NI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NI"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NE"
+          }
+        },
+        "NG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NG"
+          }
+        },
+        "NU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NU"
+          }
+        },
+        "NF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NF"
+          }
+        },
+        "MK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MK"
+          }
+        },
+        "MP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MP"
+          }
+        },
+        "NO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO"
+          }
+        },
+        "OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OM"
+          }
+        },
+        "PK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PK"
+          }
+        },
+        "PW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PW"
+          }
+        },
+        "PS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PS"
+          }
+        },
+        "PA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PA"
+          }
+        },
+        "PG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PG"
+          }
+        },
+        "PY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PY"
+          }
+        },
+        "PE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PE"
+          }
+        },
+        "PH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PH"
+          }
+        },
+        "PN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PN"
+          }
+        },
+        "PL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PL"
+          }
+        },
+        "PT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PT"
+          }
+        },
+        "PR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PR"
+          }
+        },
+        "QA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QA"
+          }
+        },
+        "RE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RE"
+          }
+        },
+        "RO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RO"
+          }
+        },
+        "RU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RU"
+          }
+        },
+        "RW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RW"
+          }
+        },
+        "BL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BL"
+          }
+        },
+        "SH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SH"
+          }
+        },
+        "KN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KN"
+          }
+        },
+        "LC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LC"
+          }
+        },
+        "MF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MF"
+          }
+        },
+        "PM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PM"
+          }
+        },
+        "VC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VC"
+          }
+        },
+        "WS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WS"
+          }
+        },
+        "SM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SM"
+          }
+        },
+        "ST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ST"
+          }
+        },
+        "SA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SA"
+          }
+        },
+        "SN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SN"
+          }
+        },
+        "RS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RS"
+          }
+        },
+        "SC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SC"
+          }
+        },
+        "SL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SL"
+          }
+        },
+        "SG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG"
+          }
+        },
+        "SX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SX"
+          }
+        },
+        "SK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SK"
+          }
+        },
+        "SI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SI"
+          }
+        },
+        "SB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SB"
+          }
+        },
+        "SO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SO"
+          }
+        },
+        "ZA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZA"
+          }
+        },
+        "GS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GS"
+          }
+        },
+        "SS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SS"
+          }
+        },
+        "ES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ES"
+          }
+        },
+        "LK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LK"
+          }
+        },
+        "SD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SD"
+          }
+        },
+        "SR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SR"
+          }
+        },
+        "SJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SJ"
+          }
+        },
+        "SE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SE"
+          }
+        },
+        "CH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CH"
+          }
+        },
+        "SY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SY"
+          }
+        },
+        "TW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TW"
+          }
+        },
+        "TJ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TJ"
+          }
+        },
+        "TZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TZ"
+          }
+        },
+        "TH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TH"
+          }
+        },
+        "TL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TL"
+          }
+        },
+        "TG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TG"
+          }
+        },
+        "TK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TK"
+          }
+        },
+        "TO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TO"
+          }
+        },
+        "TT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TT"
+          }
+        },
+        "TN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TN"
+          }
+        },
+        "TR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TR"
+          }
+        },
+        "TM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TM"
+          }
+        },
+        "TC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TC"
+          }
+        },
+        "TV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TV"
+          }
+        },
+        "UG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UG"
+          }
+        },
+        "UA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UA"
+          }
+        },
+        "AE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AE"
+          }
+        },
+        "GB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GB"
+          }
+        },
+        "US": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US"
+          }
+        },
+        "UM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UM"
+          }
+        },
+        "UY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UY"
+          }
+        },
+        "UZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UZ"
+          }
+        },
+        "VU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VU"
+          }
+        },
+        "VE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VE"
+          }
+        },
+        "VN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VN"
+          }
+        },
+        "VG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VG"
+          }
+        },
+        "VI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VI"
+          }
+        },
+        "WF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WF"
+          }
+        },
+        "EH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EH"
+          }
+        },
+        "YE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YE"
+          }
+        },
+        "ZM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZM"
+          }
+        },
+        "ZW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZW"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#RegionGroups": {
+      "type": "enum",
+      "members": {
+        "EU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EU"
+          }
+        },
+        "NA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NA"
+          }
+        },
+        "SA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SA"
+          }
+        },
+        "AF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AF"
+          }
+        },
+        "ASIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASIA"
+          }
+        },
+        "OC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OC"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#PossibleRegion": {
+      "type": "enum",
+      "members": {
+        "AMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMS"
+          }
+        },
+        "ASB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ASB"
+          }
+        },
+        "AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AT"
+          }
+        },
+        "BE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BE"
+          }
+        },
+        "BO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BO"
+          }
+        },
+        "BR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BR"
+          }
+        },
+        "BU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BU"
+          }
+        },
+        "CA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CA"
+          }
+        },
+        "CO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CO"
+          }
+        },
+        "CZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CZ"
+          }
+        },
+        "DE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DE"
+          }
+        },
+        "DEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEN"
+          }
+        },
+        "DK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DK"
+          }
+        },
+        "ES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ES"
+          }
+        },
+        "FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FR"
+          }
+        },
+        "GA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GA"
+          }
+        },
+        "GR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GR"
+          }
+        },
+        "HK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HK"
+          }
+        },
+        "HR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HR"
+          }
+        },
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ID"
+          }
+        },
+        "IL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IL"
+          }
+        },
+        "ISR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ISR"
+          }
+        },
+        "IT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IT"
+          }
+        },
+        "JH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JH"
+          }
+        },
+        "JP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JP"
+          }
+        },
+        "LA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LA"
+          }
+        },
+        "MI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MI"
+          }
+        },
+        "MX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MX"
+          }
+        },
+        "MY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MY"
+          }
+        },
+        "NG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NG"
+          }
+        },
+        "NY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NY"
+          }
+        },
+        "PH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PH"
+          }
+        },
+        "PL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PL"
+          }
+        },
+        "SE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SE"
+          }
+        },
+        "SG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG"
+          }
+        },
+        "SIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIL"
+          }
+        },
+        "SYD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYD"
+          }
+        },
+        "TH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TH"
+          }
+        },
+        "TR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TR"
+          }
+        },
+        "TX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TX"
+          }
+        },
+        "UK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UK"
+          }
+        },
+        "WA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WA"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Define a Region for Bunny."
+      }
+    },
+    "net.bunny.database#ListConfigAPIResponsePrimaryRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#Region"
+      },
+      "traits": {}
+    },
+    "net.bunny.database#ListConfigAPIResponseReplicaRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#Region"
+      },
+      "traits": {}
+    },
+    "net.bunny.database#StorageRegion": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "net.bunny.database#RegionGroups",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#ListConfigAPIResponseStorageRegionAvailableList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#StorageRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Storage Regions available"
+      }
+    },
+    "net.bunny.database#GetDatabaseConfig": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "net.bunny.database#ListConfigAPIResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "List\n\nList the configuration for the current environment"
+      }
+    },
+    "net.bunny.database#LimitsResponse": {
+      "type": "structure",
+      "members": {
+        "current_databases": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current number of databases",
+            "smithy.api#required": {}
+          }
+        },
+        "max_databases": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of databases",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GetDatabaseLimits": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "net.bunny.database#LimitsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/config/limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Limits\n\nGet current account limits and usage"
+      }
+    },
+    "net.bunny.database#GetOptimalDatabaseRegionsRequest": {
+      "type": "structure",
+      "members": {
+        "cdn_server_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cdn_server_token",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#OptimalConfigAPIResponse": {
+      "type": "structure",
+      "members": {
+        "primary_regions": {
+          "target": "net.bunny.database#OptimalConfigAPIResponsePrimaryRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The primary region you should pick",
+            "smithy.api#required": {}
+          }
+        },
+        "replica_regions": {
+          "target": "net.bunny.database#OptimalConfigAPIResponseReplicaRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The replica region you should pick",
+            "smithy.api#required": {}
+          }
+        },
+        "storage_region": {
+          "target": "net.bunny.database#StorageRegion",
+          "traits": {
+            "smithy.api#documentation": "The storage region you should pick",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#Region2": {
+      "type": "structure",
+      "members": {
+        "country": {
+          "target": "net.bunny.database#CountryCode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "group": {
+          "target": "net.bunny.database#RegionGroups",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "net.bunny.database#PossibleRegion",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#OptimalConfigAPIResponsePrimaryRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#Region2"
+      },
+      "traits": {
+        "smithy.api#documentation": "The primary region you should pick"
+      }
+    },
+    "net.bunny.database#OptimalConfigAPIResponseReplicaRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#Region2"
+      },
+      "traits": {
+        "smithy.api#documentation": "The replica region you should pick"
+      }
+    },
+    "net.bunny.database#GetOptimalDatabaseRegions": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#GetOptimalDatabaseRegionsRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#OptimalConfigAPIResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/config/optimal",
+          "code": 200
+        },
+        "smithy.api#documentation": "Optimal\n\nGet the optimal configuration for setting up a database based on your location."
+      }
+    },
+    "net.bunny.database#GetOptimalDatabaseRegionRequest": {
+      "type": "structure",
+      "members": {
+        "cdn_server_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cdn_server_token",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#OptimalSingleConfigAPIResponse": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "net.bunny.database#Region2",
+          "traits": {
+            "smithy.api#documentation": "The region that should be piked for single region deployement, can be\n null if no region are available.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "storage_region": {
+          "target": "net.bunny.database#StorageRegion",
+          "traits": {
+            "smithy.api#documentation": "The storage region you should pick",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GetOptimalDatabaseRegion": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#GetOptimalDatabaseRegionRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#OptimalSingleConfigAPIResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/config/optimal_single",
+          "code": 200
+        },
+        "smithy.api#documentation": "Optimal Single Region\n\nGet the optimal configuration for setting up a database based on your location for single region deployement"
+      }
+    },
+    "net.bunny.database#ListDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search over the group name"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Items per page. Defaults to 50; `0` is rejected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#ListDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "databases": {
+          "target": "net.bunny.database#ListDatabaseV2ResponseDatabasesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "page_info": {
+          "target": "net.bunny.database#DatabaseV2PageInfo",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#Database2": {
+      "type": "structure",
+      "members": {
+        "block_reads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The status for reads from your database",
+            "smithy.api#required": {}
+          }
+        },
+        "block_writes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The status for writes from your database",
+            "smithy.api#required": {}
+          }
+        },
+        "current_size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current size Database"
+          }
+        },
+        "current_size_bytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current size Database in bytes",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The database unique ID.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Database]",
+            "smithy.api#required": {}
+          }
+        },
+        "primary_regions": {
+          "target": "net.bunny.database#Database2PrimaryRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The Primary Regions available for your Database, when your database\n need to be commissionned, it'll be comissionned in one of those\n regions.",
+            "smithy.api#required": {}
+          }
+        },
+        "replicas_regions": {
+          "target": "net.bunny.database#Database2ReplicasRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The Replica Regions are the regions where your replicas will be able\n to be commissionned.",
+            "smithy.api#required": {}
+          }
+        },
+        "size_max": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current size limit of the Database"
+          }
+        },
+        "size_max_bytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current size limit of the Database in bytes",
+            "smithy.api#required": {}
+          }
+        },
+        "storage_region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current Storage Region used to store your databases.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url of the database",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A [Database]."
+      }
+    },
+    "net.bunny.database#Database2PrimaryRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#PossibleRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Primary Regions available for your Database, when your database\n need to be commissionned, it'll be comissionned in one of those\n regions."
+      }
+    },
+    "net.bunny.database#Database2ReplicasRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#PossibleRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Replica Regions are the regions where your replicas will be able\n to be commissionned."
+      }
+    },
+    "net.bunny.database#ListDatabaseV2ResponseDatabasesList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#Database2"
+      },
+      "traits": {}
+    },
+    "net.bunny.database#DatabaseV2PageInfo": {
+      "type": "structure",
+      "members": {
+        "current_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "has_more_items": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#ListDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#ListDatabasesRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#ListDatabaseV2Response"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.database#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/databases",
+          "code": 200
+        },
+        "smithy.api#documentation": "List\n\nList database the user has access to."
+      }
+    },
+    "net.bunny.database#CreateDatabaseRequestPrimaryRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#PossibleRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The primary regions expected for the Database"
+      }
+    },
+    "net.bunny.database#CreateDatabaseRequestReplicasRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#PossibleRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The replicas regions expected for the Database"
+      }
+    },
+    "net.bunny.database#CreateDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A [Database] name.\n Must be less than 64 Characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "primary_regions": {
+          "target": "net.bunny.database#CreateDatabaseRequestPrimaryRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The primary regions expected for the Database",
+            "smithy.api#required": {}
+          }
+        },
+        "replicas_regions": {
+          "target": "net.bunny.database#CreateDatabaseRequestReplicasRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The replicas regions expected for the Database",
+            "smithy.api#required": {}
+          }
+        },
+        "storage_region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Storage Region where the data will be saved at rest.\n You can now about the storage region available by querying GET\n `/v1/config/`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#CreateDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The created database_id",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#CreateDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#CreateDatabaseRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#CreateDatabaseV2Response"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.database#BadRequest"
+        },
+        {
+          "target": "net.bunny.database#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/databases",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create\n\nCreate a new Database for a user"
+      }
+    },
+    "net.bunny.database#ActiveStatsResponse": {
+      "type": "structure",
+      "members": {
+        "active_db": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of DB active",
+            "smithy.api#required": {}
+          }
+        },
+        "total_db": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of DB",
+            "smithy.api#required": {}
+          }
+        },
+        "total_db_size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Total used storage for DBs",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GetDatabasesActiveUsage": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "net.bunny.database#ActiveStatsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/databases/active_usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Active stats\n\nGet active stats for Databases."
+      }
+    },
+    "net.bunny.database#GetDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#ReadDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "db": {
+          "target": "net.bunny.database#Database2",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GetDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#GetDatabaseRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#ReadDatabaseV2Response"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.database#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/databases/{db_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read\n\nRead a Database"
+      }
+    },
+    "net.bunny.database#UpdateDatabaseRequestPrimaryRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#PossibleRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The primary regions expected for the Database"
+      }
+    },
+    "net.bunny.database#UpdateDatabaseRequestReplicasRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#PossibleRegion"
+      },
+      "traits": {
+        "smithy.api#documentation": "The replicas regions expected for the Database"
+      }
+    },
+    "net.bunny.database#UpdateDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The [DatabaseId]."
+          }
+        },
+        "primary_regions": {
+          "target": "net.bunny.database#UpdateDatabaseRequestPrimaryRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The primary regions expected for the Database",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "replicas_regions": {
+          "target": "net.bunny.database#UpdateDatabaseRequestReplicasRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The replicas regions expected for the Database",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#UpdateDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "db": {
+          "target": "net.bunny.database#Database2",
+          "traits": {
+            "smithy.api#documentation": "The updated [Database].",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#UpdateDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#UpdateDatabaseRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#UpdateDatabaseV2Response"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.database#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v2/databases/{db_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update\n\nUpdate a Database for the user."
+      }
+    },
+    "net.bunny.database#DeleteDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The [DatabaseId] of the database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#DeletedDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The deleted [DatabaseId].",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#DeleteDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#DeleteDatabaseRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#DeletedDatabaseV2Response"
+      },
+      "errors": [
+        {
+          "target": "net.bunny.database#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/databases/{db_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete Database\n\nDelete a Database for a user."
+      }
+    },
+    "net.bunny.database#Authorization3": {
+      "type": "enum",
+      "members": {
+        "FULL_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "full-access"
+          }
+        },
+        "READ_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read-only"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GenerateDatabaseTokenRequest": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The [DatabaseGroupId]."
+          }
+        },
+        "authorization": {
+          "target": "net.bunny.database#Authorization3",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expired at date for the token, if not degined the token won't\n expire until you invalidate the JWT Secrets.\n\n Needs to be a date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#GenerateTokenDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expired at date for the token.\n\n A date-time under the [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The generated JWT for the [Database].",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GenerateDatabaseToken": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#GenerateDatabaseTokenRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#GenerateTokenDatabaseV2Response"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v2/databases/{db_id}/auth/generate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate Token\n\nGenerate a new token for the whole Database"
+      }
+    },
+    "net.bunny.database#RevokeDatabaseTokensRequest": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The [DatabaseId] of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#RevokeDatabaseTokens": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#RevokeDatabaseTokensRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/databases/{db_id}/auth/revoke",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invalidate Tokens\n\nInvalidates all authorization tokens for the specified group."
+      }
+    },
+    "net.bunny.database#GetDatabaseStatisticsRequest": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The [DatabaseId]."
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#required": {}
+          }
+        },
+        "to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "to",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#StatsDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "delegated_write_requests": {
+          "target": "net.bunny.database#SingleRegionChart",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "latency": {
+          "target": "net.bunny.database#LatencySingleRegionChart",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "query_count": {
+          "target": "net.bunny.database#SingleRegionChart",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "row_read_count": {
+          "target": "net.bunny.database#SingleRegionChart",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "row_write_count": {
+          "target": "net.bunny.database#SingleRegionChart",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "storage": {
+          "target": "net.bunny.database#SingleRegionChart",
+          "traits": {
+            "smithy.api#documentation": "Storage used",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#SingleRegionChart": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "net.bunny.database#SingleRegionChartDataList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "diff": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The difference between the result from the time window, will be between\n -1 and 1",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "unit": {
+          "target": "net.bunny.database#ChartUnit",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#Datapoint": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "net.bunny.database#SingleRegionChartDataList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#Datapoint"
+      },
+      "traits": {}
+    },
+    "net.bunny.database#ChartUnit": {
+      "type": "enum",
+      "members": {
+        "NOUNIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoUnit"
+          }
+        },
+        "MILLISECONDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "milliseconds"
+          }
+        },
+        "MEGABYTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "megabyte"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#LatencySingleRegionChart": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "net.bunny.database#LatencySingleRegionChartDataMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "unit": {
+          "target": "net.bunny.database#ChartUnit",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#LatencyChartData": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "net.bunny.database#LatencyChartDataDataList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "diff": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The difference between the result from the time window",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#LatencyChartDataDataList": {
+      "type": "list",
+      "member": {
+        "target": "net.bunny.database#Datapoint"
+      },
+      "traits": {}
+    },
+    "net.bunny.database#LatencySingleRegionChartDataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "net.bunny.database#LatencyChartData"
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GetDatabaseStatistics": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#GetDatabaseStatisticsRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#StatsDatabaseV2Response"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/databases/{db_id}/statistics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Statistics\n\nGet the associated stats for a Database.\n\nThe buckets are return by the starting hour."
+      }
+    },
+    "net.bunny.database#GetDatabaseUsageRequest": {
+      "type": "structure",
+      "members": {
+        "db_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The [DatabaseGroupId]."
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "from",
+            "smithy.api#required": {}
+          }
+        },
+        "to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "to",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "net.bunny.database#UsageDatabaseV2Response": {
+      "type": "structure",
+      "members": {
+        "avg_latency_ms": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Average Latency this month",
+            "smithy.api#required": {}
+          }
+        },
+        "rows_read": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rows read this month",
+            "smithy.api#required": {}
+          }
+        },
+        "rows_written": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rows written this month",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "net.bunny.database#GetDatabaseUsage": {
+      "type": "operation",
+      "input": {
+        "target": "net.bunny.database#GetDatabaseUsageRequest"
+      },
+      "output": {
+        "target": "net.bunny.database#UsageDatabaseV2Response"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/databases/{db_id}/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Aggregated Usage\n\nGet the aggregated usage for the time period for a Database."
+      }
+    },
+    "net.bunny.database#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "net.bunny.database#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "net.bunny.database#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "net.bunny.database#BunnyDatabase": {
+      "type": "service",
+      "version": "0.0.144",
+      "operations": [
+        {
+          "target": "net.bunny.database#GetDatabaseConfig"
+        },
+        {
+          "target": "net.bunny.database#GetDatabaseLimits"
+        },
+        {
+          "target": "net.bunny.database#GetOptimalDatabaseRegions"
+        },
+        {
+          "target": "net.bunny.database#GetOptimalDatabaseRegion"
+        },
+        {
+          "target": "net.bunny.database#ListDatabases"
+        },
+        {
+          "target": "net.bunny.database#CreateDatabase"
+        },
+        {
+          "target": "net.bunny.database#GetDatabasesActiveUsage"
+        },
+        {
+          "target": "net.bunny.database#GetDatabase"
+        },
+        {
+          "target": "net.bunny.database#UpdateDatabase"
+        },
+        {
+          "target": "net.bunny.database#DeleteDatabase"
+        },
+        {
+          "target": "net.bunny.database#GenerateDatabaseToken"
+        },
+        {
+          "target": "net.bunny.database#RevokeDatabaseTokens"
+        },
+        {
+          "target": "net.bunny.database#GetDatabaseStatistics"
+        },
+        {
+          "target": "net.bunny.database#GetDatabaseUsage"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Bunny Database Backend API"
+      }
+    }
+  }
+}

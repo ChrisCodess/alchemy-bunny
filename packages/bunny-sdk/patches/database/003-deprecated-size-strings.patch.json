@@ -1,0 +1,10 @@
+{
+  "description": "Database2.size_max and current_size are deprecated (replaced by size_max_bytes / current_size_bytes) but listed as required; decoding would fail once the API stops sending them. Keep them, as optional.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/components/schemas/Database2/required",
+      "value": ["name", "id", "url", "block_reads", "block_writes", "size_max_bytes", "current_size_bytes", "storage_region", "primary_regions", "replicas_regions"]
+    }
+  ]
+}

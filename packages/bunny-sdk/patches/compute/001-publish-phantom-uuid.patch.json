@@ -1,0 +1,9 @@
+{
+  "description": "POST /compute/script/{id}/publish declares a required `uuid` path parameter that is not in its path template (the official Bunny CLI passes uuid: null to work around it). Remove the phantom parameter.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/paths/~1compute~1script~1{id}~1publish/post/parameters/1"
+    }
+  ]
+}

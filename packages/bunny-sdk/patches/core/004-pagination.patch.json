@@ -1,0 +1,27 @@
+{
+  "description": "List operations that return PaginationListModelOf* ({Items, CurrentPage, TotalItems, HasMoreItems}) page by the `page`/`perPage` query parameters. src/pagination.ts stops on HasMoreItems=false or an empty page.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/net.bunny.core#ListDnsZones/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "CurrentPage",
+        "items": "Items",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/net.bunny.core#ListDnsRecords/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "CurrentPage",
+        "items": "Items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

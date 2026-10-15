@@ -1,0 +1,38 @@
+{
+  "description": "POST /pullzone, POST /dnszone and POST /pullzone/{pullZoneId}/edgerules/addOrUpdate declare a 201 with no body, but the live API returns the created model (the official Terraform provider parses PullZoneModel, DnsZoneModel and the created edge rule, including its Guid, from these responses). Without a body the new resource's Id/Guid is lost.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1pullzone/post/responses/201/content",
+      "value": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/PullZoneModel"
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1dnszone/post/responses/201/content",
+      "value": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/DnsZoneModel"
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1pullzone~1{pullZoneId}~1edgerules~1addOrUpdate/post/responses/201/content",
+      "value": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/EdgeRuleV2Model"
+          }
+        }
+      }
+    }
+  ]
+}

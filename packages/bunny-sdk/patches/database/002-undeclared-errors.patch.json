@@ -1,0 +1,29 @@
+{
+  "description": "Statuses the live API returns but the spec does not declare (observed 2026-09-29): GET /v2/databases/{db_id} answers 404 {\"error\":\"The database has not been found.\"} for an unknown or deleted id, and POST /v2/databases answers 400 {\"error\":\"invalid request\",\"details\":...} for a name that is not a slug or a region outside the enum. (PATCH, DELETE and token generation answer 500 for an unknown id, so callers decide 'gone' with GET.)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1databases~1{db_id}/get/responses/404",
+      "value": {
+        "description": "The database does not exist.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/AppError" }
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1v2~1databases/post/responses/400",
+      "value": {
+        "description": "Invalid name or region.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/AppError" }
+          }
+        }
+      }
+    }
+  ]
+}

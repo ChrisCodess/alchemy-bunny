@@ -1,0 +1,15 @@
+{
+  "name": "example-edge-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "alchemy deploy",
+    "destroy": "alchemy destroy"
+  },
+  "dependencies": {
+    "alchemy-bunny": "workspace:*",
+    "@effect/platform-bun": "4.0.0-rc.117",
+    "alchemy": "2.0.0-beta.79",
+    "effect": "4.0.0-rc.117"
+  }
+}

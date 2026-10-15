@@ -1,0 +1,7 @@
+Alchemy on bunny.net
+====================
+
+This file lives in a bunny.net storage zone and is served through a pull zone.
+An edge rule (ForceDownload) makes browsers save it instead of displaying it.
+
+Deployed by the alchemy-bunny Alchemy provider.
