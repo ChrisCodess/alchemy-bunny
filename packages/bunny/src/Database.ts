@@ -292,11 +292,14 @@ export const DatabaseProvider = () =>
 
       // 1. Observe — by id, else by generated name (recovers a create whose
       // state was lost; the name embeds this instance's id). An explicit
-      // name is not looked up: names are not unique, and during a
-      // replacement the old database still carries it. Taking over an
-      // existing database goes through `read` and `--adopt`.
+      // name is never looked up, including one kept from `output` after the
+      // prop was removed: names are not unique, and during a replacement
+      // the old database still carries it. Taking over an existing database
+      // goes through `read` and `--adopt`.
       let db = output?.databaseId !== undefined ? yield* getDb(output.databaseId) : undefined;
-      if (db === undefined && news.name === undefined) db = yield* findOneByName(name);
+      if (db === undefined && news.name === undefined && output?.name === undefined) {
+        db = yield* findOneByName(name);
+      }
 
       // 2. Ensure
       if (db === undefined) {
