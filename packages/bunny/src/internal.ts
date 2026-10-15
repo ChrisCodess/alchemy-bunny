@@ -82,3 +82,12 @@ export const resolveStorageAccess = (storageZoneId: number) =>
     };
     return access;
   });
+
+/**
+ * The numeric id of a zone or script from an API response. bunny.net always
+ * sets it, so a missing id is a defect, not resource 0.
+ */
+export const idOf = (id: number | undefined, what: string): number => {
+  if (id === undefined) throw new Error(`bunny.net returned a ${what} without an id`);
+  return id;
+};

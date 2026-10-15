@@ -6,7 +6,7 @@ import * as Provider from "alchemy/Provider";
 import { Resource } from "alchemy/Resource";
 import * as Data from "effect/Data";
 import * as Effect from "effect/Effect";
-import { withPullZoneLock } from "./internal.ts";
+import { idOf, withPullZoneLock } from "./internal.ts";
 import type { Providers } from "./Providers.ts";
 
 export type PullZoneOrigin =
@@ -131,7 +131,7 @@ const toAttrs = (zone: Core.PullZoneModel): PullZoneAttributes => {
   const hostname = systemHostname(zone);
   const fromStorage = zone.OriginType === ORIGIN_STORAGE_ZONE;
   return {
-    pullZoneId: zone.Id ?? 0,
+    pullZoneId: idOf(zone.Id, "pull zone"),
     name: zone.Name ?? "",
     hostname,
     url: `https://${hostname}`,
@@ -282,7 +282,7 @@ export const PullZoneProvider = () =>
       }
 
       // 3. Sync — send only the settings that differ from the live zone
-      const pullZoneId = zone.Id ?? 0;
+      const pullZoneId = idOf(zone.Id, "pull zone");
       const delta = settingsDelta(zone, { ...desired, ...middlewareSetting(news, zone) });
       if (Object.keys(delta).length > 0) {
         zone = yield* withPullZoneLock(pullZoneId)(

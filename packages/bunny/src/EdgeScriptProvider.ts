@@ -22,7 +22,7 @@ import {
   type EdgeScriptProps,
   type EdgeScriptType,
 } from "./EdgeScript.ts";
-import { withPullZoneLock } from "./internal.ts";
+import { idOf, withPullZoneLock } from "./internal.ts";
 
 
 const SCRIPT_TYPE: Record<EdgeScriptType, 1 | 2> = { standalone: 1, middleware: 2 };
@@ -216,7 +216,7 @@ const toAttrs = (
   const linked = script.LinkedPullZones?.[0];
   const hostname = stripScheme(linked?.DefaultHostname ?? script.DefaultHostname);
   return {
-    scriptId: script.Id ?? 0,
+    scriptId: idOf(script.Id, "script"),
     name: script.Name ?? "",
     type: script.ScriptType === 2 ? "middleware" : "standalone",
     codeHash,
@@ -442,7 +442,7 @@ export const EdgeScriptProvider = () =>
         publish = true;
         yield* session.note(`Created ${type} edge script ${name}`);
       }
-      const scriptId = script.Id ?? 0;
+      const scriptId = idOf(script.Id, "script");
 
       // 3. Sync — name
       if (script.Name !== name) {
