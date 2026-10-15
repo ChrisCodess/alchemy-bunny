@@ -1,3 +1,4 @@
+import { RedactingFetchHttpClient } from "alchemy-bunny-sdk";
 import { CredentialsStoreLive } from "alchemy/Auth/Credentials";
 import { ProfileStoreLive } from "alchemy/Auth/Profile";
 import * as Command from "alchemy/Command";
@@ -5,7 +6,6 @@ import * as Provider from "alchemy/Provider";
 import { Random, RandomProvider } from "alchemy/Random";
 import { Server as WebsiteServer, ServerProvider as WebsiteServerProvider } from "alchemy/Website/Server";
 import * as Layer from "effect/Layer";
-import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { BunnyAuth } from "./AuthProvider.ts";
 import * as Credentials from "./Credentials.ts";
 import { Database, DatabaseProvider } from "./Database.ts";
@@ -25,7 +25,8 @@ export type ProviderRequirements = Layer.Services<ReturnType<typeof providers>>;
 
 /**
  * Build a layer that registers the bunny.net resource providers, the
- * bunny.net `AuthProvider`, the resolved `Credentials`, an `HttpClient`,
+ * bunny.net `AuthProvider`, the resolved `Credentials`, an `HttpClient` that
+ * keeps the `AccessKey` header out of errors,
  * `Alchemy.Random` (generated secrets, e.g. a Better Auth secret),
  * `Website.Server` (framework builds and dev servers, as for every Alchemy
  * host) and the `Command` providers (static site builds). Merge it with
@@ -83,7 +84,7 @@ export const providers = () =>
     Layer.provideMerge(BunnyAuth),
     Layer.provideMerge(ProfileStoreLive),
     Layer.provideMerge(CredentialsStoreLive),
-    Layer.provideMerge(FetchHttpClient.layer),
+    Layer.provideMerge(RedactingFetchHttpClient),
     Layer.provideMerge(Command.providers()),
     Layer.orDie,
   );
