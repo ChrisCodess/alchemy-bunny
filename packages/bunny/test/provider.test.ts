@@ -129,6 +129,39 @@ test.provider(
 );
 
 test.provider(
+  "storage deployment: deleting it with purge removes only the files it uploaded",
+  (stack) =>
+    Effect.gen(function* () {
+      const dir = makeSite({ "index.html": "<h1>mine</h1>", "assets/app.js": "1" });
+      const zone = Effect.gen(function* () {
+        const zone = yield* Bunny.StorageZone("Zone", {});
+        return { zoneId: zone.storageZoneId };
+      });
+      const withDeployment = Effect.gen(function* () {
+        const zone = yield* Bunny.StorageZone("Zone", {});
+        yield* Bunny.StorageDeployment("Files", { storageZone: zone, sourcePath: dir, prefix: "site", purge: true });
+        return { zoneId: zone.storageZoneId };
+      });
+
+      const out = yield* stack.deploy(withDeployment);
+      const stored = mock.files.get(mock.storageZones.get(out.zoneId)!.Name)!;
+      expect([...stored.keys()].sort()).toEqual(["site/assets/app.js", "site/index.html"]);
+
+      // Files the deployment did not upload, inside and outside its prefix.
+      const foreign = { body: new Uint8Array([1]), checksum: "01", contentType: "text/plain", lastModified: new Date() };
+      stored.set("site/other.txt", foreign);
+      stored.set("uploads/photo.jpg", foreign);
+
+      // Remove the deployment from the stack: its delete runs, the zone stays.
+      yield* stack.deploy(zone);
+      expect([...stored.keys()].sort()).toEqual(["site/other.txt", "uploads/photo.jpg"]);
+
+      yield* stack.destroy();
+    }),
+  { timeout: 60_000 },
+);
+
+test.provider(
   "changing the region replaces the storage zone without deleting the pull zone",
   (stack) =>
     Effect.gen(function* () {
