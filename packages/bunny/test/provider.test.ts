@@ -281,6 +281,39 @@ test.provider(
   { timeout: 60_000 },
 );
 
+test.provider(
+  "storage deployment: fileOptions globs with * and ** select the content type",
+  (stack) =>
+    Effect.gen(function* () {
+      const dir = makeSite({
+        "model.bin": "0101",
+        "nested/deep/data.custom": "x",
+        "index.html": "<h1>globs</h1>",
+      });
+      const out = yield* stack.deploy(
+        Effect.gen(function* () {
+          const zone = yield* Bunny.StorageZone("Zone", {});
+          const files = yield* Bunny.StorageDeployment("Files", {
+            storageZone: zone,
+            sourcePath: dir,
+            fileOptions: [
+              { files: "*.bin", contentType: "application/x-model" },
+              { files: "**/*.custom", contentType: "application/x-custom" },
+            ],
+          });
+          return { zoneId: zone.storageZoneId, fileCount: files.fileCount };
+        }),
+      );
+      const stored = mock.files.get(mock.storageZones.get(out.zoneId)!.Name)!;
+      expect(out.fileCount).toBe(3);
+      expect(stored.get("model.bin")!.contentType).toBe("application/x-model");
+      expect(stored.get("nested/deep/data.custom")!.contentType).toBe("application/x-custom");
+      expect(stored.get("index.html")!.contentType).toContain("text/html");
+      yield* stack.destroy();
+    }),
+  { timeout: 60_000 },
+);
+
 /** Write an edge script entry file and return its path. */
 const makeScript = (source: string) => {
   const dir = makeSite({ "edge.ts": source });

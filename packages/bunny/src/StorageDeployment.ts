@@ -99,11 +99,17 @@ const normalizePrefix = (prefix: string | undefined) =>
 
 const toPosix = (value: string) => value.replaceAll("\\", "/");
 
-const escapeRegex = (value: string) => value.replace(/[|\\{}()[\]^$+?.]/g, "\\$&");
+const escapeRegex = (value: string) => value.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
 
+/**
+ * A glob relative to `sourcePath` as a RegExp: `**` matches across
+ * directories (a leading `**\/` also matches no directory at all), `*`
+ * matches within one path segment, `?` matches one character.
+ */
 const globToRegExp = (glob: string) =>
   new RegExp(
     `^${escapeRegex(toPosix(glob))
+      .replace(/\\\*\\\*\//g, "(?:.*/)?")
       .replace(/\\\*\\\*/g, ".*")
       .replace(/\\\*/g, "[^/]*")
       .replace(/\\\?/g, ".")}$`,
