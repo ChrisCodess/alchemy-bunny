@@ -54,7 +54,7 @@ Create an account API key in the bunny.net dashboard (Account → API) and expor
 export BUNNY_API_KEY=...   # or put it in a gitignored .env; Bun loads it
 ```
 
-`BUNNY_API_BASE_URL` overrides the API endpoint (default `https://api.bunny.net`). The provider is also registered with Alchemy's profiles (`alchemy profile edit`); ⚠️ only the environment variable has been used in testing so far.
+`BUNNY_API_BASE_URL` overrides the API endpoint (default `https://api.bunny.net`). The provider is also registered with Alchemy's profiles (`alchemy profile edit`), but only the environment variable has been used in testing so far.
 
 The key never reaches deployed code. Resources that need a narrower credential create one (storage zone passwords, database tokens; see [Bindings](bindings.md)).
 
@@ -95,7 +95,7 @@ bunny.net has no resource tags, so `alchemy nuke` cannot list bunny.net resource
 
 ## Next
 
-- [Resources](resources.md) — every resource and what replaces it
-- [Edge Scripts](edge-scripts.md) — bundled and Effect-native scripts
-- [Bindings](bindings.md) — storage, database and script-to-script access from scripts
-- [Examples](../examples) — a static site, a TanStack Start app with Better Auth, an Effect-native API
+- [Resources](resources.md): every resource and what replaces it
+- [Edge Scripts](edge-scripts.md): bundled and Effect-native scripts
+- [Bindings](bindings.md): storage, database and script-to-script access from scripts
+- [Examples](../examples): a static site, a TanStack Start app with Better Auth, an Effect-native API

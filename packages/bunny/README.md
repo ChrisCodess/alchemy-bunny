@@ -2,11 +2,11 @@
 
 A [bunny.net](https://bunny.net) provider for [Alchemy](https://alchemy.run) v2 (Effect-based infrastructure as code).
 
-- **Resources:** storage zones, pull zones (CDN), custom hostnames with free certificates, file sync, cache purge, edge rules, Edge Scripts, Bunny Database with SQL migrations, database tokens.
-- **Edge Scripts as an Alchemy host**, like `Cloudflare.Worker`: an Effect-native class whose init binds resources, config and secrets, and whose `fetch` serves requests.
-- **Bindings** (Alchemy capabilities) for Edge Scripts: `ReadStorageZone` / `WriteStorageZone` / `ReadWriteStorageZone`, `QueryDatabase`, `FetchEdgeScript`.
-- **Composites:** `Website.StaticSite` and `Website.TanStackStart` (SSR on Edge Scripting).
-- **Better Auth** on Bunny Database: `BunnyDatabase` for `@alchemy.run/better-auth`.
+- Alchemy resources for storage zones, pull zones (CDN), custom hostnames with free certificates, file sync, cache purge, edge rules, Edge Scripts, Bunny Database with SQL migrations, database tokens.
+- Edge Scripts as an Alchemy host, the way a Cloudflare Worker is one: an Effect-native class whose init binds resources, config and secrets, and whose `fetch` serves requests.
+- Bindings (Alchemy capabilities) for Edge Scripts: `ReadStorageZone` / `WriteStorageZone` / `ReadWriteStorageZone`, `QueryDatabase`, `FetchEdgeScript`.
+- Two website composites, `Website.StaticSite` and `Website.TanStackStart` (SSR on Edge Scripting).
+- Better Auth on Bunny Database: `BunnyDatabase` for `@alchemy.run/better-auth`.
 
 ```bash
 bun add alchemy-bunny alchemy@2.0.0-beta.79 effect@4.0.0-rc.117 @effect/platform-bun@4.0.0-rc.117

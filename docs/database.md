@@ -11,8 +11,8 @@ const token = yield* Bunny.DatabaseToken("DbToken", { database: db }); // or aut
 
 Bunny Database is SQLite-compatible (libSQL) with primary regions and read replicas. It is in public preview: bunny.net allows 50 databases per account and 1 GB per database, and says features and APIs may change during the preview. Reach it from:
 
-- **Effect code** in a script: [`QueryDatabase`](bindings.md#databases), which issues and binds its own token.
-- **Other code**: the database `url` and a `DatabaseToken`'s `token`, as `BUNNY_DATABASE_URL` and `BUNNY_DATABASE_AUTH_TOKEN` (the names `@bunny.net/database-client` reads by default), passed through `env`.
+- Effect code in a script: [`QueryDatabase`](bindings.md#databases), which issues and binds its own token.
+- Other code: the database `url` and a `DatabaseToken`'s `token`, as `BUNNY_DATABASE_URL` and `BUNNY_DATABASE_AUTH_TOKEN` (the names `@bunny.net/database-client` reads by default), passed through `env`.
 
 ```ts
 yield* Bunny.EdgeScript("Api", {
@@ -29,7 +29,7 @@ yield* Bunny.EdgeScript("Api", {
 
 ## Migrations
 
-`migrations` points at a directory of `.sql` files applied in filename order on every deploy. They use Alchemy's shared migration engine — the `__alchemy_migrations` table D1 and Neon use — so each file runs once; the resource records every applied file's hash (`migrationsHashes`).
+`migrations` points at a directory of `.sql` files applied in filename order on every deploy. They use Alchemy's shared migration engine, the `__alchemy_migrations` table D1 and Neon use, so each file runs once; the resource records every applied file's hash (`migrationsHashes`).
 
 Each file runs as **one transaction**: `BEGIN; …; COMMIT;` in a single Hrana `sequence`, followed by `ROLLBACK`. Multi-statement files are fine. A failing file applies nothing and fails the deploy, and the next deploy retries it. Migrations connect with a 15-minute token that is not stored.
 
@@ -52,12 +52,12 @@ bunny.net can revoke **all** of a database's tokens at once, never one. This has
    ```
 3. Deploy. New tokens are issued and re-bound into every host that uses them.
 
-⚠️ This procedure follows from how the provider and Alchemy's state work, but it has not been exercised end to end.
+This procedure follows from how the provider and Alchemy's state work, but it has not been exercised end to end.
 
 ## SQL clients
 
-- `QueryDatabase` — the Effect client in scripts ([Bindings](bindings.md#databases)).
-- `alchemy-bunny/DatabaseD1` — `connectD1({ url, authToken })`, a Cloudflare-D1-compatible view over `@bunny.net/database-client` for libraries that accept a D1 binding (Better Auth's D1 dialect, `drizzle-orm/d1`). It imports no Alchemy or Effect code. It covers `prepare().bind()` with `all`, `first`, `run`, `raw`, plus `batch` (one transaction) and `exec`.
+- `QueryDatabase`: the Effect client in scripts ([Bindings](bindings.md#databases)).
+- `alchemy-bunny/DatabaseD1`: `connectD1({ url, authToken })`, a Cloudflare-D1-compatible view over `@bunny.net/database-client` for libraries that accept a D1 binding (Better Auth's D1 dialect, `drizzle-orm/d1`). It imports no Alchemy or Effect code. It covers `prepare().bind()` with `all`, `first`, `run`, `raw`, plus `batch` (one transaction) and `exec`.
 - Migrations use the internal SDK's `Sql` module (Hrana over `/v2/pipeline`), which retries 421, 429 and 5xx.
 
 ## Verified behaviour
