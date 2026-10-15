@@ -8,6 +8,10 @@ What this release does not do, or has not proven yet. Contributions welcome.
 - **Alchemy profiles.** Credentials have been tested through `BUNNY_API_KEY` only.
 - **Recovering from a token revoke-all.** The documented procedure has not been run end to end ([Token revocation](database.md#token-revocation)).
 
+## Bunny Database is in public preview
+
+bunny.net limits an account to 50 databases and a database to 1 GB during the preview, and says features and APIs may change. The SDK is generated from the current v2 API.
+
 ## Database tokens cannot be revoked individually
 
 bunny.net revokes all of a database's tokens or none, and does not report revoked tokens. As a result:

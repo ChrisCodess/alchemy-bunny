@@ -1,12 +1,16 @@
 # alchemy-bunny
 
-A [bunny.net](https://bunny.net) provider for [Alchemy](https://alchemy.run) v2 — infrastructure as code in TypeScript, built on [Effect](https://effect.website).
+A [bunny.net](https://bunny.net) provider for [Alchemy](https://alchemy.run) v2, the Effect-based infrastructure-as-code framework for TypeScript.
 
-- **Resources:** storage zones, pull zones (CDN), custom hostnames with free certificates, file sync, cache purge, edge rules, Edge Scripts, Bunny Database with SQL migrations, database tokens.
-- **Edge Scripts as an Alchemy host**, like `Cloudflare.Worker`: a bundled file, or an Effect-native class whose init binds resources, config and secrets, and whose `fetch` serves requests.
-- **Bindings** for Edge Scripts: read and write storage zones, query Bunny Databases, call one Edge Script from another like a service binding.
-- **Websites:** `Website.StaticSite` and `Website.TanStackStart` (SSR and server functions on Edge Scripting).
-- **Better Auth** on Bunny Database, the stock `@alchemy.run/better-auth` way.
+You install one package, `alchemy-bunny`. It depends on `alchemy-bunny-sdk`, an Effect client for the bunny.net APIs that the provider is built on. Apps never import the SDK, the same way Alchemy apps never import the `@distilled.cloud/*` SDKs behind `alchemy`.
+
+What the provider covers:
+
+- Alchemy resources for storage zones, pull zones, custom hostnames with free certificates, file sync, cache purge, edge rules, Edge Scripts, Bunny Database with SQL migrations, and database tokens.
+- Edge Scripts as an Alchemy host, the way a Cloudflare Worker is one. A script is a bundled file, or an Effect-native class whose init binds resources, config and secrets and whose `fetch` serves requests.
+- Bindings inside Edge Scripts to read and write storage zones, query Bunny Databases, and call one Edge Script from another.
+- Two website composites, `Website.StaticSite` and `Website.TanStackStart`. The second runs SSR and server functions on Edge Scripting.
+- Better Auth on Bunny Database, through the stock `@alchemy.run/better-auth` package.
 
 ```ts
 import * as Alchemy from "alchemy";
@@ -32,7 +36,7 @@ bun add alchemy-bunny alchemy@2.0.0-beta.79 effect@4.0.0-rc.117 @effect/platform
 BUNNY_API_KEY=... bun alchemy deploy
 ```
 
-Read [Getting started](docs/getting-started.md) before the first deploy: Effect has to be pinned with overrides, and Actions (such as the Better Auth migration) need a one-line Alchemy patch on `2.0.0-beta.79`.
+Read [Getting started](docs/getting-started.md) before the first deploy. Effect has to be pinned with overrides, and Actions such as the Better Auth migration need a one-line Alchemy patch on `2.0.0-beta.79`.
 
 ## Bindings in one example
 
@@ -59,7 +63,7 @@ export default class Api extends Bunny.EdgeScript<Api>()(
 ) {}
 ```
 
-The zone's password and a database token reach the script as secrets; nothing is copied by hand. See [Bindings](docs/bindings.md).
+The zone's password and a database token reach the script as secrets. Nothing is copied by hand. See [Bindings](docs/bindings.md).
 
 ## Imports
 
@@ -70,7 +74,7 @@ The zone's password and a database token reach the script as secrets; nothing is
 | Plain code calling a bound Edge Script: a framework server or a bundled script | `alchemy-bunny/EdgeScriptFetch` |
 | Plain code that wants a D1-style database (`drizzle-orm/d1`, …) | `alchemy-bunny/DatabaseD1` |
 
-Plain runtime code never imports the package root; it would pull Alchemy and Effect into the bundle. Its values come from `env`, and the two subpaths above have no Alchemy or Effect dependencies. `alchemy-bunny-sdk` is installed with the package, as Alchemy's `@distilled.cloud/*` SDKs are installed with `alchemy`; apps never import it.
+Plain runtime code never imports the package root, which would pull Alchemy and Effect into the bundle. Its values come from `env`, and the two subpaths above have no Alchemy or Effect dependencies.
 
 ## Documentation
 
@@ -78,7 +82,10 @@ Plain runtime code never imports the package root; it would pull Alchemy and Eff
 
 ## Packages
 
-You install one package, [`alchemy-bunny`](packages/bunny). It depends on [`alchemy-bunny-sdk`](packages/bunny-sdk), the Effect client for the bunny.net APIs, which is internal in the way `@distilled.cloud/*` is internal to Alchemy ([details](docs/sdk.md)).
+The repository holds two packages.
+
+- [`packages/bunny`](packages/bunny) is `alchemy-bunny`, the provider you install: resources, the Edge Script host, bindings, website composites, and the Better Auth layer.
+- [`packages/bunny-sdk`](packages/bunny-sdk) is `alchemy-bunny-sdk`, the Effect client for the bunny.net APIs. It is installed as a dependency of the provider and needs only `effect`, so tooling that wants the raw API without Alchemy can use it on its own. See [the SDK](docs/sdk.md).
 
 ## Examples
 
@@ -91,9 +98,19 @@ You install one package, [`alchemy-bunny`](packages/bunny). It depends on [`alch
 
 ## Status
 
-`0.1.0`. It is built and tested against exact versions: `alchemy@2.0.0-beta.79` and `effect@4.0.0-rc.117`, both pre-releases, so expect breaking changes as they move.
+Version `0.1.0`, built and tested against exact pre-release versions: `alchemy@2.0.0-beta.79` and `effect@4.0.0-rc.117`. Expect breaking changes as they move. Every resource and binding has tests against a bunny.net stand-in, and a live suite runs against a real account.
 
-Every resource and binding is covered by lifecycle tests against a bunny.net stand-in. A live test suite runs against a real account. What has not been proven yet is listed in [Known limitations](docs/limitations.md). The most notable gap: database tokens cannot be revoked one at a time.
+Read these before you depend on the provider. The full list is in [Known limitations](docs/limitations.md).
+
+- Bunny Database is in public preview: 50 databases per account, 1 GB per database, and bunny.net says its APIs may change.
+- Database tokens cannot be revoked one at a time. Destroying a stack or replacing a token leaves the old JWT valid, and the token a binding issues never expires. See [Token revocation](docs/database.md#token-revocation).
+- Alchemy state holds secrets: storage zone passwords, database tokens and generated keys. With `localState()` that is the `.alchemy/` directory. Protect the state store as you would a credential.
+- bunny.net has no resource tags, so ownership lives in state alone. `alchemy nuke` cannot find bunny.net resources, an existing resource with an explicit `name` needs `--adopt`, and lost state means cleaning up by hand.
+- A deleted storage zone's name stays blocked for an undocumented time, over 40 minutes in testing, so an explicitly named zone cannot be replaced. Generated names, the default, avoid the problem.
+- There is no local emulator, so `alchemy dev` creates real resources in a dev stage and only framework dev servers run locally.
+- Script-to-script calls go over public HTTPS with a shared key header, not a private binding. The callee must be an Effect-native script, and the key does not rotate on its own.
+- Storage bodies are buffered, not streamed, under the 128 MB script memory limit.
+- The default stage is `live_$USER`, and generated names put the stage into public `*.b-cdn.net` and `*.bunny.run` hostnames. Pass `--stage` to choose.
 
 ## Contributing
 
