@@ -9,7 +9,7 @@ A [bunny.net](https://bunny.net) provider for [Alchemy](https://alchemy.run) v2 
 - Better Auth on Bunny Database: `BunnyDatabase` for `@alchemy.run/better-auth`.
 
 ```bash
-bun add alchemy-bunny alchemy@2.0.0-beta.79 effect@4.0.0-rc.117 @effect/platform-bun@4.0.0-rc.117
+bun add alchemy-bunny alchemy@2.0.0-beta.83 effect@4.0.5 @effect/platform-bun@4.0.5
 ```
 
 ```ts
@@ -33,7 +33,7 @@ BUNNY_API_KEY=... bun alchemy deploy
 
 Import the root in the stack and in Effect-native scripts; plain runtime code uses `alchemy-bunny/EdgeScriptFetch` and `/DatabaseD1`, which have no Alchemy or Effect dependencies. The `alchemy-bunny-sdk` dependency is internal.
 
-`alchemy` and `effect` are exact peer versions: this release is built and tested against `alchemy@2.0.0-beta.79` and `effect@4.0.0-rc.117`. Read [Installation](https://github.com/ChrisCodess/alchemy-bunny/blob/main/docs/getting-started.md#installation) before using Better Auth migrations: `alchemy@2.0.0-beta.79` needs a one-line patch.
+`alchemy` is an exact peer version: this release is built and tested against `alchemy@2.0.0-beta.83` and `effect@4.0.5` (peer `^4.0.0`).
 
 **Documentation:** [github.com/ChrisCodess/alchemy-bunny/tree/main/docs](https://github.com/ChrisCodess/alchemy-bunny/tree/main/docs) · **Known limitations:** [docs/limitations.md](https://github.com/ChrisCodess/alchemy-bunny/blob/main/docs/limitations.md)
 

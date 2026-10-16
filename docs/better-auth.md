@@ -3,10 +3,8 @@
 Stock [`@alchemy.run/better-auth`](https://www.npmjs.com/package/@alchemy.run/better-auth), as in Alchemy's `cloudflare-better-auth` example: `BetterAuth()` inside an Effect-native Edge Script, with a database layer.
 
 ```bash
-bun add @alchemy.run/better-auth@2.0.0-beta.79 better-auth@1.7.6 kysely@0.29.6
+bun add @alchemy.run/better-auth@2.0.0-beta.83 better-auth@1.7.6 kysely@0.29.6
 ```
-
-The schema migration is an Alchemy Action, so apply the [Alchemy patch](getting-started.md#installation) on `alchemy@2.0.0-beta.79`.
 
 ```ts
 import { BetterAuth } from "@alchemy.run/better-auth";

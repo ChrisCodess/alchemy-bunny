@@ -11,10 +11,10 @@
  */
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
-import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
-import * as HttpClient from "effect/unstable/http/HttpClient";
-import * as HttpClientError from "effect/unstable/http/HttpClientError";
-import * as HttpClientRequest from "effect/unstable/http/HttpClientRequest";
+import * as FetchHttpClient from "effect/http/FetchHttpClient";
+import * as HttpClient from "effect/http/HttpClient";
+import * as HttpClientError from "effect/http/HttpClientError";
+import * as HttpClientRequest from "effect/http/HttpClientRequest";
 
 /** The header bunny.net reads credentials from. */
 export const ACCESS_KEY_HEADER = "AccessKey";

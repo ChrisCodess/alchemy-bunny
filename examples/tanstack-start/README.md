@@ -15,4 +15,4 @@ BUNNY_API_KEY=... bun alchemy deploy
 BUNNY_API_KEY=... bun alchemy destroy
 ```
 
-Better Auth's schema migration is an Alchemy Action: this repository applies the [Alchemy patch](../../docs/getting-started.md#installation) it needs. See [Better Auth](../../docs/better-auth.md) and [Websites](../../docs/websites.md).
+See [Better Auth](../../docs/better-auth.md) and [Websites](../../docs/websites.md).

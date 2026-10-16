@@ -1,8 +1,8 @@
 // docs/bindings.md: an Effect-native Edge Script reading and writing a
 // storage zone through the ReadWriteStorageZone binding.
 import * as Effect from "effect/Effect";
-import * as HttpServerRequest from "effect/unstable/http/HttpServerRequest";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpServerRequest from "effect/http/HttpServerRequest";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import * as Bunny from "alchemy-bunny";
 
 export const Uploads = Bunny.StorageZone("Uploads", {});

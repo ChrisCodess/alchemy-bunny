@@ -32,11 +32,11 @@ export default Alchemy.Stack(
 ```
 
 ```bash
-bun add alchemy-bunny alchemy@2.0.0-beta.79 effect@4.0.0-rc.117 @effect/platform-bun@4.0.0-rc.117
+bun add alchemy-bunny alchemy@2.0.0-beta.83 effect@4.0.5 @effect/platform-bun@4.0.5
 BUNNY_API_KEY=... bun alchemy deploy
 ```
 
-Read [Getting started](docs/getting-started.md) before the first deploy. Effect has to be pinned with overrides, and Actions such as the Better Auth migration need a one-line Alchemy patch on `2.0.0-beta.79`.
+[Getting started](docs/getting-started.md) covers imports, credentials and a first stack.
 
 ## Bindings in one example
 
@@ -98,7 +98,7 @@ The repository holds two packages.
 
 ## Status
 
-Version `0.1.0`, built and tested against exact pre-release versions: `alchemy@2.0.0-beta.79` and `effect@4.0.0-rc.117`. Expect breaking changes as they move. Every resource and binding has tests against a bunny.net stand-in, and a live suite runs against a real account.
+Version `0.1.0`, built and tested against `alchemy@2.0.0-beta.83` and `effect@4.0.5`. Alchemy v2 is still in beta and the provider pins it exactly, so expect breaking changes as it moves. Every resource and binding has tests against a bunny.net stand-in, and a live suite runs against a real account.
 
 Read these before you depend on the provider. The full list is in [Known limitations](docs/limitations.md).
 

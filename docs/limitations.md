@@ -47,5 +47,5 @@ Details and the recovery steps are in [Token revocation](database.md#token-revoc
 
 ## Versions
 
-- Exact peer versions: `alchemy@2.0.0-beta.79` and `effect@4.0.0-rc.117`. Effect must be pinned with overrides, and Alchemy needs a [one-line patch](getting-started.md#installation) for Actions.
+- `alchemy` is an exact peer version, `2.0.0-beta.83`. `effect` is `^4.0.0`, tested with `4.0.5`.
 - bunny.net has no resource tags: no `alchemy nuke` listing, and explicitly named existing resources need `--adopt`.

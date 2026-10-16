@@ -16,7 +16,7 @@ import {
 } from "alchemy/SQL/Migrations/index";
 import * as Data from "effect/Data";
 import * as Effect from "effect/Effect";
-import * as HttpClient from "effect/unstable/http/HttpClient";
+import * as HttpClient from "effect/http/HttpClient";
 import { toRedacted } from "./internal.ts";
 import type { Providers } from "./Providers.ts";
 

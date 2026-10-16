@@ -15,7 +15,7 @@ import { Sql } from "alchemy-bunny-sdk";
 import * as Test from "alchemy/Test/Bun";
 import * as Effect from "effect/Effect";
 import * as Schedule from "effect/Schedule";
-import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
+import * as FetchHttpClient from "effect/http/FetchHttpClient";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";

@@ -1,9 +1,9 @@
 // docs/bindings.md: an Effect-native caller, through the FetchEdgeScript
 // binding (Cloudflare.Workers.Fetch's shape).
 import * as Effect from "effect/Effect";
-import * as HttpClientRequest from "effect/unstable/http/HttpClientRequest";
-import * as HttpServerRequest from "effect/unstable/http/HttpServerRequest";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpClientRequest from "effect/http/HttpClientRequest";
+import * as HttpServerRequest from "effect/http/HttpServerRequest";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import * as Bunny from "alchemy-bunny";
 import Auth from "./auth.ts";
 

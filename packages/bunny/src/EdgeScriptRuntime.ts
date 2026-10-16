@@ -27,9 +27,9 @@ import * as Effect from "effect/Effect";
 import * as Exit from "effect/Exit";
 import * as Layer from "effect/Layer";
 import * as Scope from "effect/Scope";
-import * as HttpMiddleware from "effect/unstable/http/HttpMiddleware";
-import * as HttpServerRequest from "effect/unstable/http/HttpServerRequest";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpMiddleware from "effect/http/HttpMiddleware";
+import * as HttpServerRequest from "effect/http/HttpServerRequest";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import { FETCH_KEY_ENV, fromForwardedRequest } from "./EdgeScriptFetch.ts";
 
 export const EDGE_SCRIPT_TYPE = "Bunny.EdgeScript";

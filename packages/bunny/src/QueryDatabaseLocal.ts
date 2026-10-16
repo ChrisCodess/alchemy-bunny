@@ -2,7 +2,7 @@ import { Credentials, Database as DatabaseApi, Retry } from "alchemy-bunny-sdk";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Redacted from "effect/Redacted";
-import * as HttpClient from "effect/unstable/http/HttpClient";
+import * as HttpClient from "effect/http/HttpClient";
 import type { Database } from "./Database.ts";
 import { connectD1, type D1Database } from "./DatabaseD1.ts";
 import { toRedacted } from "./internal.ts";

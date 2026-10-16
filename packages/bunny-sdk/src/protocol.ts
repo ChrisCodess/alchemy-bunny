@@ -12,7 +12,9 @@
  *             `{ ErrorKey, Field, Message }`; 401/404/500 bodies are empty or
  *             `{ Message }`. Failures map to the operation's typed error
  *             classes (matchers first, then status), then the shared
- *             HTTP-status classes, then {@link UnknownBunnyError}.
+ *             HTTP-status classes, then {@link UnknownBunnyError}. In strict
+ *             response validation a 2xx body that does not match the
+ *             output schema fails with {@link BunnyParseError}.
  *
  * The database API (https://api.bunny.net/database) takes the same
  * `AccessKey` but answers errors as `{ error, details? }` (or plain text
@@ -21,18 +23,19 @@
 import * as Effect from "effect/Effect";
 import type * as Layer from "effect/Layer";
 import * as Redacted from "effect/Redacted";
-import type * as HttpClient from "effect/unstable/http/HttpClient";
-import type * as HttpClientError from "effect/unstable/http/HttpClientError";
+import type * as HttpClient from "effect/http/HttpClient";
+import type * as HttpClientError from "effect/http/HttpClientError";
 import type * as API from "@distilled.cloud/core/api";
-import { makeRestProtocol, type RestErrorInfo } from "@distilled.cloud/core/protocol-rest";
+import { makeRestProtocol, type RestErrorInfo, type RestParseErrorInfo } from "@distilled.cloud/core/protocol-rest";
 import type { API_ERRORS, ConfigError } from "@distilled.cloud/core/errors";
 import { Credentials, type Config } from "./credentials.ts";
-import { UnknownBunnyError } from "./errors.ts";
+import { BunnyParseError, UnknownBunnyError } from "./errors.ts";
 
 /** Error channel shared by every generated Bunny operation. */
 export type BunnyOpError =
   | InstanceType<(typeof API_ERRORS)[number]>
   | UnknownBunnyError
+  | BunnyParseError
   | ConfigError
   | HttpClientError.HttpClientError;
 
@@ -51,6 +54,8 @@ const unknownError = ({ code, message, body }: RestErrorInfo) =>
     body,
   });
 
+const parseError = ({ body, cause }: RestParseErrorInfo) => new BunnyParseError({ body, cause });
+
 export const BunnyProtocol: Layer.Layer<API.Protocol> =
   makeRestProtocol<Config>({
     credentials,
@@ -65,6 +70,7 @@ export const BunnyProtocol: Layer.Layer<API.Protocol> =
       };
     },
     unknownError,
+    parseError,
   });
 
 /** The Bunny Database API: same key, `/database` base path, `{ error }` bodies. */
@@ -82,4 +88,5 @@ export const BunnyDatabaseProtocol: Layer.Layer<API.Protocol> =
       };
     },
     unknownError,
+    parseError,
   });

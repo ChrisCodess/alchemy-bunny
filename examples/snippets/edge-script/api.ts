@@ -4,7 +4,7 @@ import * as Alchemy from "alchemy";
 import * as Config from "effect/Config";
 import * as Effect from "effect/Effect";
 import * as Redacted from "effect/Redacted";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import * as Bunny from "alchemy-bunny";
 
 export default class Api extends Bunny.EdgeScript<Api>()(

@@ -39,3 +39,16 @@ export class UnknownBunnyError extends Schema.TaggedError<UnknownBunnyError>()(
     body: Schema.Unknown,
   },
 ).pipe(Category.withServerError) {}
+
+/**
+ * A 2xx body that does not match the operation's output schema. Raised only
+ * in strict response validation (`ResponseValidation.strict` from
+ * `@distilled.cloud/core`); the default lenient mode returns the body as read.
+ */
+export class BunnyParseError extends Schema.TaggedError<BunnyParseError>()(
+  "BunnyParseError",
+  {
+    body: Schema.Unknown,
+    cause: Schema.Unknown,
+  },
+).pipe(Category.withParseError) {}

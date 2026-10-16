@@ -1,6 +1,6 @@
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import { Database } from "../../src/Database.ts";
 import { EdgeScript } from "../../src/EdgeScript.ts";
 import { QueryDatabase } from "../../src/QueryDatabase.ts";

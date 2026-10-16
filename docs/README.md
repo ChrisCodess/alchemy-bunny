@@ -1,6 +1,6 @@
 # Documentation
 
-1. [Getting started](getting-started.md): install, version pins, the Alchemy patch, credentials, a first stack
+1. [Getting started](getting-started.md): install, imports, credentials, a first stack
 2. [Resources](resources.md): storage and pull zones, hostnames, deployments, purge, edge rules, databases, tokens
 3. [Edge Scripts](edge-scripts.md): bundled and Effect-native scripts, env, cookies, runtime notes
 4. [Bindings](bindings.md): storage, database and Edge Script access from running code
