@@ -42,7 +42,7 @@ const site = yield* Bunny.Website.TanStackStart("Website", {
 });
 ```
 
-- Build and dev go through Alchemy's `Website.Server` with `@alchemy.run/frontend-frameworks/tanstack-start` and its Node target (install `@alchemy.run/frontend-frameworks@2.0.0-beta.79`), exactly as for Fly and AWS. Under `alchemy dev`, TanStack Start's own dev server runs locally with the same `env`.
+- Build and dev go through Alchemy's `Website.Server` with `@alchemy.run/frontend-frameworks/tanstack-start` and its Node target (install `@alchemy.run/frontend-frameworks@2.0.0-beta.83`), exactly as for Fly and AWS. Under `alchemy dev`, TanStack Start's own dev server runs locally with the same `env`.
 - On deploy, `dist/server/server.js` (a web `{ fetch }` handler) becomes a standalone Edge Script with `fetchHandler`. `dist/client` goes to a storage zone. Edge rules serve `/assets/*` from storage with a one-year browser cache. Every other path reaches the server; list root files from `public/` in `publicFiles` to serve them from storage too.
 - `env` is routed by shape like an Edge Script's: a `Redacted` value becomes a secret, a string a variable, and an Edge Script a binding read with `edgeScriptFetcher` ([Bindings](bindings.md#edge-script-to-edge-script)). Read values with `process.env`. The build gets the same values; they are not inlined into `dist` (checked for secrets).
 - Options: `rootDir`, `memo`, `env`, `dev`, `region`, `replicationRegions`, `publicFiles`, `domain`.

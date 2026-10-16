@@ -20,7 +20,6 @@ This repository uses [Bun](https://bun.sh) for everything: `bun install`, `bun t
 | `packages/bunny` | `alchemy-bunny`: resources, providers, capabilities, websites, Better Auth layer |
 | `examples/*` | Runnable stacks; `examples/snippets` holds the code of `docs/`, typechecked but never deployed |
 | `docs/` | User documentation |
-| `patches/` | `alchemy@2.0.0-beta.79.patch`, a backport from Alchemy `main` (see [Getting started](docs/getting-started.md#installation)). Remove it when upgrading to an Alchemy release that contains the fix. |
 
 ## Conventions
 
@@ -39,7 +38,7 @@ When Alchemy has a convention, use it rather than inventing one, and name the re
   - Credentials derive their logical ID from the bound resource, not the host.
   - Capability modules and `EdgeScriptFetch.ts` are bundled into Edge Scripts: no provider imports, no `node:crypto`.
 - **Website composites** follow Alchemy's (`Fly.Website.*`, `Cloudflare.Website.*`): build and dev through `alchemy/Website/Server`, a stock `vite.config.ts`, one `env` map. No bunny.net-specific Vite plugins.
-- **Versions are pinned exactly**: `alchemy@2.0.0-beta.79`, `effect@4.0.0-rc.117`, `@distilled.cloud/core@1.0.0-rc.12`, `better-auth@1.7.6`, `@alchemy.run/better-auth@2.0.0-beta.79`, `@alchemy.run/frontend-frameworks@2.0.0-beta.79`. Upgrade `effect` only together with Alchemy.
+- **Versions are pinned exactly**: `alchemy@2.0.0-beta.83`, `effect@4.0.5`, `@distilled.cloud/core@1.0.0-rc.15`, `better-auth@1.7.6`, `@alchemy.run/better-auth@2.0.0-beta.83`, `@alchemy.run/frontend-frameworks@2.0.0-beta.83`. Keep `@distilled.cloud/core` at the version the pinned Alchemy depends on, so only one copy is installed.
 - **Never guess bunny.net behaviour.** Verify it against the live API and record it in [docs/bunny-net-notes.md](docs/bunny-net-notes.md). Then calibrate the stand-in (`packages/bunny/test/mock-bunny.ts`) to it.
 
 ## Tests

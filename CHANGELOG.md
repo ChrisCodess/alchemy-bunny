@@ -2,7 +2,7 @@
 
 ## 0.1.0 (unreleased)
 
-First release of `alchemy-bunny` and `alchemy-bunny-sdk`, for `alchemy@2.0.0-beta.79` and `effect@4.0.0-rc.117`.
+First release of `alchemy-bunny` and `alchemy-bunny-sdk`, for `alchemy@2.0.0-beta.83` and `effect@4.0.5`.
 
 ### alchemy-bunny
 

@@ -2,8 +2,8 @@
 // handles a keyed request from a bound caller as the URL the caller
 // addressed.
 import * as Effect from "effect/Effect";
-import * as HttpServerRequest from "effect/unstable/http/HttpServerRequest";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpServerRequest from "effect/http/HttpServerRequest";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import * as Bunny from "alchemy-bunny";
 
 export default class Auth extends Bunny.EdgeScript<Auth>()(

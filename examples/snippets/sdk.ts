@@ -4,7 +4,7 @@ import { Core, CredentialsFromEnv, Storage } from "alchemy-bunny-sdk";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Redacted from "effect/Redacted";
-import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
+import * as FetchHttpClient from "effect/http/FetchHttpClient";
 
 const program = Effect.gen(function* () {
   // Core API, with the account key (BUNNY_API_KEY).

@@ -19,7 +19,7 @@ import { RedactingFetchHttpClient } from "alchemy-bunny-sdk/http";
 import type * as Storage from "alchemy-bunny-sdk/storage";
 import type { RuntimeContext } from "alchemy/RuntimeContext";
 import * as Effect from "effect/Effect";
-import * as HttpClient from "effect/unstable/http/HttpClient";
+import * as HttpClient from "effect/http/HttpClient";
 import type { StorageZone } from "./StorageZone.ts";
 
 /** Access level a storage zone binding grants. */

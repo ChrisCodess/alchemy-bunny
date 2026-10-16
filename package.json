@@ -13,20 +13,8 @@
     "pack": "bun scripts/pack.ts"
   },
   "devDependencies": {
-    "@alchemy.run/frontend-frameworks": "2.0.0-beta.79",
+    "@alchemy.run/frontend-frameworks": "2.0.0-beta.83",
     "@types/bun": "latest",
     "typescript": "^5"
-  },
-  "overrides": {
-    "effect": "4.0.0-rc.117",
-    "@effect/platform-bun": "4.0.0-rc.117",
-    "@effect/platform-node": "4.0.0-rc.117",
-    "@effect/platform-node-shared": "4.0.0-rc.117",
-    "@effect/sql-d1": "4.0.0-rc.117",
-    "@effect/sql-sqlite-do": "4.0.0-rc.117",
-    "@effect/vitest": "4.0.0-rc.117"
-  },
-  "patchedDependencies": {
-    "alchemy@2.0.0-beta.79": "patches/alchemy@2.0.0-beta.79.patch"
   }
 }

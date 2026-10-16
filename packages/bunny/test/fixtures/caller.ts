@@ -1,6 +1,6 @@
 import * as Effect from "effect/Effect";
-import * as HttpClientRequest from "effect/unstable/http/HttpClientRequest";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpClientRequest from "effect/http/HttpClientRequest";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import { EdgeScript } from "../../src/EdgeScript.ts";
 import { FetchEdgeScript } from "../../src/FetchEdgeScript.ts";
 import { FetchEdgeScriptHttp } from "../../src/FetchEdgeScriptHttp.ts";

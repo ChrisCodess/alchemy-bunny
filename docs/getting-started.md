@@ -3,37 +3,12 @@
 ## Installation
 
 ```bash
-bun add alchemy-bunny alchemy@2.0.0-beta.79 effect@4.0.0-rc.117 @effect/platform-bun@4.0.0-rc.117
+bun add alchemy-bunny alchemy@2.0.0-beta.83 effect@4.0.5 @effect/platform-bun@4.0.5
 ```
 
-`alchemy` and `effect` are peer dependencies pinned to the exact versions this release is built and tested with; the Alchemy CLI also needs `@effect/platform-bun` in your project. Two more steps are needed with these versions.
+`alchemy` is a peer dependency pinned to the exact beta this release is built and tested with. `effect` is a peer at `^4.0.0`, tested with `4.0.5`. The Alchemy CLI also needs `@effect/platform-bun` in your project.
 
-**1. Pin Effect everywhere.** `alchemy@2.0.0-beta.79` accepts newer Effect release candidates, but `effect@4.0.0-rc.118` removed the `effect/unstable/*` paths Alchemy imports. Override Effect and its platform packages in your `package.json`:
-
-```json
-{
-  "overrides": {
-    "effect": "4.0.0-rc.117",
-    "@effect/platform-bun": "4.0.0-rc.117",
-    "@effect/platform-node": "4.0.0-rc.117",
-    "@effect/platform-node-shared": "4.0.0-rc.117"
-  }
-}
-```
-
-Bun then warns `incorrect peer dependency "effect@4.0.0-rc.117"`; that is expected with the override.
-
-**2. Patch Alchemy if you use Actions** (the Better Auth schema migration is one). In `alchemy@2.0.0-beta.79`, a resource that did not change signals it is ready before its outputs are stored, so an Action that reads it can fail with `MissingSourceError: Source Db not found`. The fix is on Alchemy's `main` branch; until a release contains it, apply [`patches/alchemy@2.0.0-beta.79.patch`](../patches/alchemy@2.0.0-beta.79.patch) (it moves one line in `Apply`) with Bun:
-
-```json
-{
-  "patchedDependencies": {
-    "alchemy@2.0.0-beta.79": "patches/alchemy@2.0.0-beta.79.patch"
-  }
-}
-```
-
-The `@alchemy.run/better-auth`, `better-auth` and `kysely` peers are optional; install them only for the [Better Auth](better-auth.md) layer. `Website.TanStackStart` also needs `@alchemy.run/frontend-frameworks@2.0.0-beta.79`.
+The `@alchemy.run/better-auth`, `better-auth` and `kysely` peers are optional; install them only for the [Better Auth](better-auth.md) layer. `Website.TanStackStart` also needs `@alchemy.run/frontend-frameworks@2.0.0-beta.83`.
 
 ## Imports
 

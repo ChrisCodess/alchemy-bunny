@@ -3,7 +3,7 @@
 // (QueryDatabaseLocal).
 import * as Alchemy from "alchemy";
 import * as Effect from "effect/Effect";
-import * as HttpServerResponse from "effect/unstable/http/HttpServerResponse";
+import * as HttpServerResponse from "effect/http/HttpServerResponse";
 import * as Bunny from "alchemy-bunny";
 
 export const Db = Bunny.Database("Db", {

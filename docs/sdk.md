@@ -17,7 +17,7 @@ import { Core, CredentialsFromEnv, Storage } from "alchemy-bunny-sdk";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
 import * as Redacted from "effect/Redacted";
-import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
+import * as FetchHttpClient from "effect/http/FetchHttpClient";
 
 const program = Effect.gen(function* () {
   const zones = yield* Core.listStorageZones({});
@@ -37,7 +37,7 @@ const program = Effect.gen(function* () {
 program.pipe(Effect.provide(Layer.mergeAll(CredentialsFromEnv, FetchHttpClient.layer)), Effect.runPromise);
 ```
 
-- Failures are tagged: `NotFound`, `NameTaken`, `NameBeingDeleted`, `Storage*`, `Sql*`, and `UnknownBunnyError` for anything unexpected.
+- Failures are tagged: `NotFound`, `NameTaken`, `NameBeingDeleted`, `Storage*`, `Sql*`, `UnknownBunnyError` for anything unexpected, and `BunnyParseError` when strict response validation (`ResponseValidation.strict` from `@distilled.cloud/core`) rejects a 2xx body.
 - Throttling and 5xx responses are retried with backoff; the `Sql` module also retries the database's transient 421.
 - Sensitive fields (passwords, tokens, keys) are marked in the generated schemas and come back as `Redacted`.
 - List operations are paginated streams: `Core.listDnsZones.items({})` is a `Stream`.

@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "alchemy-bunny": "workspace:*",
-    "@effect/platform-bun": "4.0.0-rc.117",
-    "alchemy": "2.0.0-beta.79",
-    "effect": "4.0.0-rc.117"
+    "@effect/platform-bun": "4.0.5",
+    "alchemy": "2.0.0-beta.83",
+    "effect": "4.0.5"
   }
 }

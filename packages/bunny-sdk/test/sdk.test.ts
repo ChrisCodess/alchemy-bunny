@@ -6,10 +6,10 @@ import * as Result from "effect/Result";
 import * as Stream from "effect/Stream";
 import * as Cause from "effect/Cause";
 import * as Exit from "effect/Exit";
-import * as HttpClient from "effect/unstable/http/HttpClient";
-import * as HttpClientError from "effect/unstable/http/HttpClientError";
-import * as HttpClientRequest from "effect/unstable/http/HttpClientRequest";
-import * as HttpClientResponse from "effect/unstable/http/HttpClientResponse";
+import * as HttpClient from "effect/http/HttpClient";
+import * as HttpClientError from "effect/http/HttpClientError";
+import * as HttpClientRequest from "effect/http/HttpClientRequest";
+import * as HttpClientResponse from "effect/http/HttpClientResponse";
 import { inspect } from "node:util";
 import * as Bunny from "../src/index.ts";
 
