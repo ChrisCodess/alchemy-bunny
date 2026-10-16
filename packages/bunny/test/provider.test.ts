@@ -8,6 +8,7 @@
  */
 import { afterAll, expect } from "bun:test";
 import * as Namespace from "alchemy/Namespace";
+import * as Provider from "alchemy/Provider";
 import * as Test from "alchemy/Test/Bun";
 import * as Cause from "effect/Cause";
 import * as Effect from "effect/Effect";
@@ -649,6 +650,33 @@ test.provider(
       expect(mock.databases.size).toBe(0);
     }),
   { timeout: 60_000 },
+);
+
+test.provider(
+  "edge rule and hostname: recovering an interrupted create with a stripped pull zone reference finds nothing",
+  () =>
+    Effect.gen(function* () {
+      // Alchemy recovers an interrupted create by calling read with the
+      // persisted props; an unresolved pull zone reference is stripped to `{}`
+      // or dropped. read must answer "nothing exists", not crash.
+      const strippedProps = [{ hostname: "cdn.example.com" }, { hostname: "cdn.example.com", pullZone: {} }];
+      const reads = [
+        (yield* Provider.findProvider(Bunny.EdgeRule)).read!,
+        (yield* Provider.findProvider(Bunny.PullZoneHostname)).read!,
+      ];
+      for (const read of reads) {
+        for (const olds of strippedProps) {
+          const found = yield* read({
+            id: "Recovered",
+            fqn: "Recovered",
+            instanceId: "00".repeat(16),
+            olds: olds as never,
+            output: undefined,
+          });
+          expect(found).toBeUndefined();
+        }
+      }
+    }),
 );
 
 test.provider(

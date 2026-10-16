@@ -230,7 +230,9 @@ export const EdgeRuleProvider = () =>
       return undefined;
     }),
     read: Effect.fn(function* ({ fqn, olds, output }) {
-      const pullZoneId = output?.pullZoneId ?? olds?.pullZone.pullZoneId;
+      // Recovering an interrupted create, Alchemy passes the persisted props, where
+      // an unresolved pull zone reference was stripped to `{}` or dropped.
+      const pullZoneId = output?.pullZoneId ?? olds?.pullZone?.pullZoneId;
       if (pullZoneId === undefined) return undefined;
       const description = output?.description ?? olds?.description ?? `alchemy:${fqn}`;
       const zone = yield* Core.getPullZone({ id: pullZoneId }).pipe(

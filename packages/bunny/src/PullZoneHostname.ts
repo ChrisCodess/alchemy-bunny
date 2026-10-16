@@ -153,7 +153,9 @@ export const PullZoneHostnameProvider = () =>
       return undefined;
     }),
     read: Effect.fn(function* ({ olds, output }) {
-      const pullZoneId = output?.pullZoneId ?? olds?.pullZone.pullZoneId;
+      // Recovering an interrupted create, Alchemy passes the persisted props, where
+      // an unresolved pull zone reference was stripped to `{}` or dropped.
+      const pullZoneId = output?.pullZoneId ?? olds?.pullZone?.pullZoneId;
       const hostname = (output?.hostname ?? olds?.hostname)?.toLowerCase();
       if (pullZoneId === undefined || hostname === undefined) return undefined;
       const zone = yield* getZone(pullZoneId);
