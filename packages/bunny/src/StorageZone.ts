@@ -168,8 +168,12 @@ const findZoneByName = (name: string) =>
     return match?.Id === undefined ? undefined : yield* getZone(match.Id);
   });
 
+// bunny.net: "StorageZone name must be between 4 and 63 characters and consist
+// of numbers, letters or - only."
+const STORAGE_ZONE_NAME_MAX = 63;
+
 const generatedName = (id: string) =>
-  createPhysicalName({ id, lowercase: true, maxLength: 64 });
+  createPhysicalName({ id, lowercase: true, maxLength: STORAGE_ZONE_NAME_MAX });
 
 const desiredOf = (news: StorageZoneProps) => ({
   region: normalizeRegion(news.region ?? DEFAULT_REGION),

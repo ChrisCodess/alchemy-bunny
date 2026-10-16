@@ -157,6 +157,9 @@ export const startMockBunny = () => {
     if (path === "/storagezone" && request.method === "POST") {
       const name = String(body.Name ?? "");
       if (name.length < 4) return error(400, "The name must be at least 4 characters long.", "Name");
+      if (name.length > 63 || !/^[a-zA-Z0-9-]+$/.test(name)) {
+        return error(400, "StorageZone name must be between 4 and 63 characters and consist of numbers, letters or - only.", "Name");
+      }
       if (takenNames().has(name)) return error(400, "The storage zone name is already taken.", "Name");
       if ([...storageZones.values()].some((z) => z.Deleted && z.Name === name)) {
         return error(400, "The storage zone is currently being deleted.", "Name");

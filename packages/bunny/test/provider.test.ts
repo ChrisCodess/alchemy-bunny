@@ -129,6 +129,23 @@ test.provider(
 );
 
 test.provider(
+  "storage zone: a generated name that needs truncation stays within bunny.net's 63 characters",
+  (stack) =>
+    Effect.gen(function* () {
+      const out = yield* stack.deploy(
+        Effect.gen(function* () {
+          const zone = yield* Bunny.StorageZone("AStorageZoneWhoseLogicalIdIsLongEnoughToForceTruncation", {});
+          return { zoneId: zone.storageZoneId, name: zone.name };
+        }),
+      );
+      expect(out.name.length).toBe(63);
+      expect(mock.storageZones.get(out.zoneId)!.Name).toBe(out.name);
+      yield* stack.destroy();
+    }),
+  { timeout: 60_000 },
+);
+
+test.provider(
   "storage deployment: deleting it with purge removes only the files it uploaded",
   (stack) =>
     Effect.gen(function* () {
