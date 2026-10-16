@@ -7,6 +7,7 @@ Behaviour of the bunny.net APIs that the provider depends on. Each item was conf
 - `https://api.bunny.net` with the `AccessKey` header.
 - 404 bodies are `{ ErrorKey, Field, Message }`.
 - A taken name is a 400 whose message says so.
+- Storage zone names are 4 to 63 letters, digits or `-`. Anything else is a 400, "StorageZone name must be between 4 and 63 characters and consist of numbers, letters or - only."
 - Recreating a just-deleted storage zone's name is a 400, "The storage zone is currently being deleted.", still returned 40 minutes after the delete. Pull zone names are free again immediately.
 - `GET /storagezone` ignores `search` and returns every zone as a plain array. `GET /pullzone?search=` answers with the page envelope.
 - `POST /pullzone` and edge rule `addOrUpdate` return bodies, although the spec declares none.
